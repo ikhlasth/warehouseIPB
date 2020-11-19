@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/coklatilang"
+    android:gravity="center"
+    android:fitsSystemWindows="true">
+
+    <ImageView
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:id="@+id/logo"
+        android:src="@drawable/logo2"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+    
+    <ProgressBar
+        android:id="@+id/pbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="70dp"
+        android:indeterminate="true"
+        android:visibility="visible"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pbar"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:text="Tunggu sebentar..."/>
+
+
+</RelativeLayout>

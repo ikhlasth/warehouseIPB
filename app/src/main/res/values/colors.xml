@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="transparan">@android:color/transparent</color>
+
+    <color name="ijogelapbgt">#0f3b3c</color>
+    <color name="ijogelap">#194546</color>
+    <color name="coklattua">#692900</color>
+    <color name="coklatmuda">#c09465</color>
+    <color name="coklatilang">#e8d9d6</color>
+</resources>

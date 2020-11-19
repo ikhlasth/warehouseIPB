@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "142818088856",
+    "firebase_url": "https://warehouseipb.firebaseio.com",
+    "project_id": "warehouseipb",
+    "storage_bucket": "warehouseipb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142818088856:android:4b95237a23c01e91eefded",
+        "android_client_info": {
+          "package_name": "com.ikhlast.warehouseipb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142818088856-ad4bmii83o93q8d0ak8i1lucjf02ebi5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ikhlast.warehouseipb",
+            "certificate_hash": "8690484b66e261233fd946f72cb7434a4b2b9fe9"
+          }
+        },
+        {
+          "client_id": "142818088856-lh9sqrco1neaes6ed8aein3oenmi25e2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRkFv49f-eoQoS6ogslKttYWxdNjXzZPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142818088856-lh9sqrco1neaes6ed8aein3oenmi25e2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

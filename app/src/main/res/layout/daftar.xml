@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/coklatilang"
+    android:layout_gravity="center"
+    android:fitsSystemWindows="true"
+    android:gravity="center">
+
+    <!--    <ImageView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:src="@drawable/background"/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="55dp"
+                android:hint="Nama pengguna"
+                android:textColor="@color/ijogelap"
+                android:inputType="textEmailAddress"
+                android:ems="10"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pas"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/ijogelap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="55dp"
+                android:hint="Kata sandi"
+                android:textColor="@color/ijogelap"
+                android:paddingEnd="15dp"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pas2"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/ijogelap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:id="@+id/password2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="55dp"
+                android:hint="Konfirmasi kata sandi"
+                android:textColor="@color/ijogelap"
+                android:paddingEnd="15dp"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/daftar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginHorizontal="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/tombol"
+            android:textColor="@color/coklatilang"
+            android:text="Daftar"/>
+        <TextView
+            android:id="@+id/atau"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/ijogelap"
+            android:text="Sudah punya akun?"/>
+        <Button
+            android:id="@+id/masuk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="50dp"
+            android:background="@drawable/tombol2"
+            android:text="Masuk"
+            android:textColor="@color/ijogelap"/>
+    </LinearLayout>
+
+</FrameLayout>
