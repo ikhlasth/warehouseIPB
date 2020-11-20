@@ -3,4 +3,24 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Penitipan Hewan</string>
+    <string name="slide_1_desc">Titipkan hewan peliharaan anda dengan pemeliharaan terbaik!</string>
+
+    <string name="slide_2_title">Penitipan Barang</string>
+    <string name="slide_2_desc">Titipkan barang anda tanpa khawatir berjamur!</string>
+
+    <string name="slide_3_title">Layanan servis Kendaraan</string>
+    <string name="slide_3_desc">Jaga kesehatan kendaraan anda dengan jasa servis!</string>
+
+    <string name="slide_4_title">Layanan Perawatan Barang</string>
+    <string name="slide_4_desc">Rawat barang anda seperti yang anda inginkan!</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
 </resources>

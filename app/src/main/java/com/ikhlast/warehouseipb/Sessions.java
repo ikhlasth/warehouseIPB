@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 
-import com.ikhlast.warehouseipb.launch.Auth;
+import com.ikhlast.warehouseipb.launch.Welcome;
 
 import java.util.HashMap;
 
@@ -26,7 +26,10 @@ public class Sessions {
     public static final String KEY_NAME = "name";
 
     // Email address (make variable public to access from outside)
-    public static final String KEY_NICK = "nick";
+    public static final String KEY_EMAIL = "email";
+
+    //First time
+    private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 
     // Constructor
     public Sessions(Context context) {
@@ -35,10 +38,19 @@ public class Sessions {
         editor = spf.edit();
     }
 
+    public void setFirstTimeLaunch(boolean isFirstTime) {
+        editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime);
+        editor.commit();
+    }
+
+    public boolean isFirstTimeLaunch() {
+        return spf.getBoolean(IS_FIRST_TIME_LAUNCH, true);
+    }
+
     /**
      * Create login session
      * */
-    public void createLoginSession(String name, String nick){
+    public void createLoginSession(String name, String email){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
@@ -46,7 +58,7 @@ public class Sessions {
         editor.putString(KEY_NAME, name);
 
         // Storing nick in spf
-        editor.putString(KEY_NICK, nick);
+        editor.putString(KEY_EMAIL, email);
 
         // commit changes
         editor.commit();
@@ -61,7 +73,7 @@ public class Sessions {
     public void checkLogin(){
         if(this.isLoggedIn()) {
             // user is logged in redirect him to Home Activity
-            if (spf.getString(KEY_NICK, null).equals("adminwhipb")){
+            if (spf.getString(KEY_NAME, null).equals("adminwhipb")){
                 Intent j = new Intent(ctx, Admin.class);
                         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         j.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -78,7 +90,7 @@ public class Sessions {
                 ctx.startActivity(i);
             }
         } else {
-            Intent start=new Intent(ctx, Auth.class);
+            Intent start=new Intent(ctx, Welcome.class);
             start.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
             // Add new Flag to start new Activity
@@ -110,7 +122,7 @@ public class Sessions {
         user.put(KEY_NAME, spf.getString(KEY_NAME, null));
 
         // user nick id
-        user.put(KEY_NICK, spf.getString(KEY_NICK, null));
+        user.put(KEY_EMAIL, spf.getString(KEY_EMAIL, null));
 
         // return user
         return user;

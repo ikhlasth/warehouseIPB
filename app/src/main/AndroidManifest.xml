@@ -9,12 +9,14 @@
         android:roundIcon="@drawable/logo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".launch.Auth"
+        <activity android:name=".launch.Welcome"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Admin"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Daftar"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Admin"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Daftar"
+            android:screenOrientation="portrait" />
         <activity android:name=".Home" />
         <activity
             android:name=".Login"

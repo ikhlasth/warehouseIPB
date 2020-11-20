@@ -32,7 +32,7 @@
             android:layout_marginTop="30dp">
 
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/username_daftarF"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="55dp"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/password_daftarF"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="55dp"
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
             <EditText
-                android:id="@+id/password2"
+                android:id="@+id/password2_daftarF"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="55dp"

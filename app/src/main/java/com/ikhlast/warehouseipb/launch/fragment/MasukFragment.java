@@ -1,10 +1,13 @@
 package com.ikhlast.warehouseipb.launch.fragment;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -15,6 +18,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.ikhlast.warehouseipb.Home;
 import com.ikhlast.warehouseipb.R;
 
 /**
@@ -23,6 +27,8 @@ import com.ikhlast.warehouseipb.R;
 public class MasukFragment extends BottomSheetDialogFragment {
     private AppBarLayout apl;
     private LinearLayout ll;
+    EditText user, pass;
+    Button msk;
 
     @NonNull
     @Override
@@ -37,6 +43,22 @@ public class MasukFragment extends BottomSheetDialogFragment {
         apl = view.findViewById(R.id.appbarl2);
         ll = view.findViewById(R.id.llmasuk);
         hideV(apl);
+
+        user = view.findViewById(R.id.username_masukF);
+        pass = view.findViewById(R.id.password_masukF);
+        msk = view.findViewById(R.id.masuk_frg);
+        msk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (user.equals("") | pass.equals("")){
+                    user.setError("Pastikan tidak ada kolom yang kosong");
+                } else {
+                    startActivity(new Intent(getActivity(), Home.class));
+                    setEnterTransition(0);
+                    setExitTransition(0);
+                }
+            }
+        });
 
         bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override

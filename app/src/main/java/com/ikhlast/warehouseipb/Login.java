@@ -94,11 +94,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                 user = auth.getCurrentUser();
                                 nick = user.getEmail().replace("@whipb.com", "");
                                 if (nick != null) {
-                                    session.createLoginSession(user.getEmail(), nick);
+                                    session.createLoginSession(nick, user.getEmail());
                                     if (nick.equals("adminwhipb")) {
                                     startActivity(new Intent(Login.this, Admin.class));
                                     overridePendingTransition(0,0);
-                                    finish();
+//                                    finish();
                                     loading.dismiss();
                                         } else {
                                         db.child("sedangAktif").child(nick).setValue(nick);
