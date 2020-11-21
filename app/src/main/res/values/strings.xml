@@ -5,9 +5,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="title_activity_welcome">Home Screen</string>
-    <string name="next">NEXT</string>
-    <string name="skip">SKIP</string>
-    <string name="start">GOT IT</string>
+    <string name="next">LANJUT</string>
+    <string name="skip">ABAIKAN</string>
+    <string name="start">MENGERTI</string>
 
     <string name="slide_1_title">Penitipan Hewan</string>
     <string name="slide_1_desc">Titipkan hewan peliharaan anda dengan pemeliharaan terbaik!</string>

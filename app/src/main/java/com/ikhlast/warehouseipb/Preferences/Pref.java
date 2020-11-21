@@ -1,4 +1,4 @@
-package com.ikhlast.warehouseipb;
+package com.ikhlast.warehouseipb.Preferences;
 
 import android.content.Context;
 import android.content.Intent;

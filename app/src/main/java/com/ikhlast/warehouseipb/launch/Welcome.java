@@ -19,10 +19,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ikhlast.warehouseipb.Home;
 import com.ikhlast.warehouseipb.Login;
 import com.ikhlast.warehouseipb.R;
-import com.ikhlast.warehouseipb.Pref;
+import com.ikhlast.warehouseipb.Preferences.Pref;
 
 public class Welcome extends AppCompatActivity {
 
