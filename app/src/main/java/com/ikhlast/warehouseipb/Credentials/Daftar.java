@@ -1,4 +1,4 @@
-package com.ikhlast.warehouseipb;
+package com.ikhlast.warehouseipb.Credentials;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.ikhlast.warehouseipb.Main.Home;
+import com.ikhlast.warehouseipb.R;
 
 public class Daftar extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mAuth;

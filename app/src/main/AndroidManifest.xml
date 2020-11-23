@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ikhlast.warehouseipb">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo2"
@@ -9,17 +13,22 @@
         android:roundIcon="@drawable/logo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".launch.Welcome"
+        <activity android:name=".Main.Biodata"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Main.Titip"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Admin"
+            android:name=".launch.Welcome"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Daftar"
+            android:name=".Main.Admin"
             android:screenOrientation="portrait" />
-        <activity android:name=".Home" />
         <activity
-            android:name=".Login"
+            android:name=".Credentials.Daftar"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Main.Home" />
+        <activity
+            android:name=".Credentials.Login"
             android:screenOrientation="portrait" />
         <activity
             android:name=".launch.SplashActivity"

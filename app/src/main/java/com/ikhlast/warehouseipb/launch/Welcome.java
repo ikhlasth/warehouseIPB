@@ -19,7 +19,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ikhlast.warehouseipb.Login;
+import com.ikhlast.warehouseipb.Credentials.Login;
 import com.ikhlast.warehouseipb.R;
 import com.ikhlast.warehouseipb.Preferences.Pref;
 

@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 
-import com.ikhlast.warehouseipb.Admin;
-import com.ikhlast.warehouseipb.Home;
-import com.ikhlast.warehouseipb.Login;
+import com.ikhlast.warehouseipb.Main.Admin;
+import com.ikhlast.warehouseipb.Main.Home;
+import com.ikhlast.warehouseipb.Credentials.Login;
 import com.ikhlast.warehouseipb.launch.Welcome;
 
 import java.util.HashMap;
@@ -39,15 +39,6 @@ public class Sessions {
         this.ctx = context;
         spf = ctx.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = spf.edit();
-    }
-
-    public void setFirstTimeLaunch(boolean isFirstTime) {
-        editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime);
-        editor.commit();
-    }
-
-    public boolean isFirstTimeLaunch() {
-        return spf.getBoolean(IS_FIRST_TIME_LAUNCH, true);
     }
 
     /**

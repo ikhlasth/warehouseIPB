@@ -1,14 +1,16 @@
-package com.ikhlast.warehouseipb;
+package com.ikhlast.warehouseipb.Main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Admin extends AppCompatActivity {
+import com.ikhlast.warehouseipb.R;
+
+public class Titip extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin);
+        setContentView(R.layout.titip);
     }
 }

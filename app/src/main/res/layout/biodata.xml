@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main.Biodata"
+    android:background="@color/coklatilang">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="30dp"
+        android:paddingBottom="50dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/biodata_namalengkap"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Nama lengkap sesuai KTP"
+            android:textColor="@color/ijogelap"
+            android:inputType="textEmailAddress"
+            android:ems="10"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinput2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/biodata_alamatasli"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Alamat asli"
+                android:textColor="@color/ijogelap"
+                android:inputType="textPostalAddress"
+                android:ems="10"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinput3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/biodata_alamatkos"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Alamat kos/kontrakan"
+                android:textColor="@color/ijogelap"
+                android:inputType="textPostalAddress"
+                android:ems="10"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Foto KTP:"/>
+        <ImageView
+            android:id="@+id/biodata_fotoktp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/biodata_pilihfoto"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tombol2"
+            android:textColor="@color/ijogelap"
+            android:text="@string/pilih_foto"/>
+
+        <Button
+            android:id="@+id/biodata_kirim"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/tombol"
+            android:textColor="@color/coklatilang"
+            android:text="Kirim"/>
+        <ProgressBar
+            android:id="@+id/biodata_progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="100"
+            android:progress="0"
+            android:visibility="gone" />
+
+    </LinearLayout>
+    </ScrollView>
+</FrameLayout>

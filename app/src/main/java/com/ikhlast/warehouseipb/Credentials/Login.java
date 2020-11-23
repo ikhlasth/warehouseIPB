@@ -1,4 +1,4 @@
-package com.ikhlast.warehouseipb;
+package com.ikhlast.warehouseipb.Credentials;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,15 +20,26 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.ikhlast.warehouseipb.Main.Admin;
+import com.ikhlast.warehouseipb.Main.Home;
 import com.ikhlast.warehouseipb.Preferences.Sessions;
+import com.ikhlast.warehouseipb.R;
+
+import java.sql.Time;
+import java.text.DateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
     EditText username, password;
     Button masuk, daftar;
-    String u, p, nick;
+    String u, p, nick, tanggal;
     AlertDialog.Builder alert;
     Sessions session;
     ProgressDialog loading;
+    DateFormat time;
 
     private FirebaseAuth auth;
     private FirebaseUser user;
@@ -37,6 +49,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        tanggal = time.getDateTimeInstance().format(new Date());
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
@@ -102,7 +116,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 //                                    finish();
                                     loading.dismiss();
                                         } else {
-                                        db.child("sedangAktif").child(nick).setValue(nick);
+                                        db.child("sedangAktif").child(nick).child("time").setValue(tanggal);
+                                        db.child("sedangAktif").child(nick).child("phone").setValue(Build.MANUFACTURER+" "+Build.MODEL+", Android "+Build.VERSION.RELEASE);
                                         startActivity(new Intent(Login.this, Home.class));
                                         overridePendingTransition(0,0);
                                         finish();
