@@ -13,4 +13,11 @@ public class Titip extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.titip);
     }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        finish();
+        overridePendingTransition(0,0);
+    }
 }

@@ -87,8 +87,6 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener {
                                 mUser = mAuth.getCurrentUser();
                                 usr = mAuth.getCurrentUser().getEmail().replace("@whipb.com", "");
                                 database.child("user").child(mUser.getUid()).child("user").setValue(usr);
-                                database.child("user").child(mUser.getUid()).child("premium").setValue("no");
-                                database.child("user").child(mUser.getUid()).child("points").setValue(0);
                                 Toast.makeText(Daftar.this, "Authentication success.",
                                         Toast.LENGTH_SHORT).show();
 
