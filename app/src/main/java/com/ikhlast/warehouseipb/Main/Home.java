@@ -8,23 +8,18 @@ import androidx.fragment.app.FragmentManager;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.ikhlast.warehouseipb.Fragment.HomeFragment;
 import com.ikhlast.warehouseipb.Fragment.InfoFragment;
-import com.ikhlast.warehouseipb.Fragment.TestFragment;
+import com.ikhlast.warehouseipb.Fragment.PromoFragment;
 import com.ikhlast.warehouseipb.Preferences.Sessions;
 import com.ikhlast.warehouseipb.R;
 
@@ -141,7 +136,7 @@ public class Home extends AppCompatActivity implements BottomNavigationView.OnNa
                 frg = new HomeFragment();
                 break;
             case R.id.test_menu:
-                frg = new TestFragment();
+                frg = new PromoFragment();
                 break;
             case R.id.info_menu:
                 frg = new InfoFragment();

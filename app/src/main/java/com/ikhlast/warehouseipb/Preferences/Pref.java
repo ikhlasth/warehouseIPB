@@ -1,12 +1,7 @@
 package com.ikhlast.warehouseipb.Preferences;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-
-import com.ikhlast.warehouseipb.launch.Welcome;
-
-import java.util.HashMap;
 
 public class Pref {
     SharedPreferences spf;

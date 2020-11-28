@@ -1,4 +1,4 @@
-package com.ikhlast.warehouseipb.launch;
+package com.ikhlast.warehouseipb.Launch;
 
 import android.os.Bundle;
 import android.os.Handler;

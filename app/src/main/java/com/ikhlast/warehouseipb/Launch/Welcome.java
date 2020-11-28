@@ -1,4 +1,4 @@
-package com.ikhlast.warehouseipb.launch;
+package com.ikhlast.warehouseipb.Launch;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;

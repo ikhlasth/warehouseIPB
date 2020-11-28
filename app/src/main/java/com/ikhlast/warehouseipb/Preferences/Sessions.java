@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import com.ikhlast.warehouseipb.Main.Admin;
 import com.ikhlast.warehouseipb.Main.Home;
 import com.ikhlast.warehouseipb.Credentials.Login;
-import com.ikhlast.warehouseipb.launch.Welcome;
+import com.ikhlast.warehouseipb.Launch.Welcome;
 
 import java.util.HashMap;
 
