@@ -3,31 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/isilist_cardview"
-    android:layout_gravity="center_horizontal"
-    android:layout_width="300dp"
-    android:layout_height="250dp"
-    android:backgroundTint="@color/coklatilang"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="10dp"
+    android:backgroundTint="@color/coklatmuda"
     app:cardCornerRadius="10dp"
-    android:elevation="2dp"
-    android:layout_centerHorizontal="true">
+    android:elevation="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="10dp">
-    <ImageView
-        android:id="@+id/isilist_gambar"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:src="@drawable/help"/>
     <TextView
         android:id="@+id/isilist_namapaket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:text="Paket 1"
+        android:hint="Paket 1"
         android:textSize="20sp"
+        android:textStyle="bold"
         android:textColor="@color/ijogelap"/>
         <TextView
             android:id="@+id/isilist_deskripsipaket"
@@ -35,12 +30,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:textColor="@color/ijogelap"
-            android:text="Kasur + 20 set pakaian + sepatu + jasa service/laundry"/>
+            android:hint="Kasur + 20 set pakaian + sepatu + jasa service/laundry"
+            android:textSize="18sp"/>
         <TextView
             android:id="@+id/isilist_dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/ijogelap"
-            android:text="Dp : Rp. 50 000"/>
+            android:hint="Dp : Rp. 50 000"
+            android:textSize="18sp"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -13,12 +13,16 @@
         android:roundIcon="@drawable/logo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main.Biodata"
+        <activity android:name=".Main.Profil"></activity>
+        <activity android:name=".Main.Promo" />
+        <activity
+            android:name=".Main.Biodata"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".Main.Titip"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Main.Titip"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible|adjustResize"/>
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".Launch.Welcome"
             android:screenOrientation="portrait" />
@@ -41,7 +45,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

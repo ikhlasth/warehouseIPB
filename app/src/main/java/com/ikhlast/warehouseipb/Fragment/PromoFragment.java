@@ -64,7 +64,8 @@ public class PromoFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rv = view.findViewById(R.id.rc_list);
+        rv = view.findViewById(R.id.recycler_list);
+        rv.setHasFixedSize(true);
         dbref.child("promo").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -77,7 +78,6 @@ public class PromoFragment extends Fragment{
                 }
                 rvAdapter = new AdapterPromo(data, getContext());
                 rv.setAdapter(rvAdapter);
-                loading.dismiss();
             }
 
             @Override

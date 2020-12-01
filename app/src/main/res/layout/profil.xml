@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/coklatilang"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".Main.Profil">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_home"
         android:layout_width="match_parent"
@@ -20,4 +17,5 @@
         app:itemIconTint="@drawable/nav_check"
         app:itemTextColor="@drawable/nav_check"
         app:menu="@menu/menuutama"/>
+
 </FrameLayout>

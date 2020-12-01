@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -34,14 +35,12 @@ public class Home extends AppCompatActivity implements BottomNavigationView.OnNa
     private ProgressDialog loading;
 
     BottomNavigationView bnv;
-    FragmentManager fm = getSupportFragmentManager();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-        loadF(new HomeFragment());
 
         alert = new AlertDialog.Builder(this);
         database = FirebaseDatabase.getInstance().getReference();
@@ -90,20 +89,13 @@ public class Home extends AppCompatActivity implements BottomNavigationView.OnNa
 //        });
     }
 
-    private boolean loadF(Fragment f){
-        if (f != null){
-            fm.beginTransaction().replace(R.id.home_cnt, f).commit();
-            return true;
-        }
-        return false;
-    }
-
 
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
         logout();
     }
+
 
     public void logout(){
         alert
@@ -127,21 +119,24 @@ public class Home extends AppCompatActivity implements BottomNavigationView.OnNa
         }).create().show();
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Fragment frg = null;
 
         switch (item.getItemId()){
             case R.id.home_menu:
-                frg = new HomeFragment();
                 break;
             case R.id.test_menu:
-                frg = new PromoFragment();
+                startActivity(new Intent(Home.this, Promo.class));
+                overridePendingTransition(0,0);
+                finish();
                 break;
             case R.id.info_menu:
-                frg = new InfoFragment();
+                startActivity(new Intent(Home.this, Profil.class));
+                overridePendingTransition(0,0);
+                finish();
                 break;
         }
-        return loadF(frg);
+        return true;
     }
 }

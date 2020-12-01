@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ikhlast.warehouseipb.Main.Promo;
 import com.ikhlast.warehouseipb.Models.ModelPaket;
 import com.ikhlast.warehouseipb.R;
 
@@ -21,59 +22,67 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class AdapterPromo extends RecyclerView.Adapter {
-    private ArrayList<ModelPaket> data;
+public class AdapterPromo extends RecyclerView.Adapter<AdapterPromo.ViewHolder> {
+    private ArrayList<ModelPaket> daftarPromo;
     private Context context;
 
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
+    private DataListener listener;
     private String user;
 
-    public AdapterPromo(ArrayList<ModelPaket> data, Context context) {
+    public AdapterPromo(ArrayList<ModelPaket> barang, Context ctx) {
+        daftarPromo = barang;
+        context = ctx;
+        listener = (Promo)ctx;
     }
 
+    class ViewHolder extends RecyclerView.ViewHolder{
+        TextView judul, deskripsi, harga;
+        CardView cv;
 
-    @NonNull
+        ViewHolder(View v){
+            super(v);
+            judul = v.findViewById(R.id.isilist_namapaket);
+            deskripsi = v.findViewById(R.id.isilist_deskripsipaket);
+            harga = v.findViewById(R.id.isilist_dp);
+            cv = v.findViewById(R.id.isilist_cardview);
+        }
+    }
+
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         user = mUser.getEmail().replace("@whipb.com", "");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.isilistpromo, parent, false);
-        return new ListViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
+        final String judul = daftarPromo.get(position).getJudul();
+        final String desc = daftarPromo.get(position).getDesc();
+        final int dp = daftarPromo.get(position).getDp();
+
+        holder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onPromoClick(daftarPromo.get(position), position);
+            }
+        });
+        holder.judul.setText(judul);
+        holder.deskripsi.setText(desc);
+        holder.harga.setText(dp+"");
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return daftarPromo.size();
     }
 
-    private class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView gbr;
-        TextView judul, deskripsi, harga;
-        CardView cv;
-
-        public ListViewHolder(@NonNull View itemView) {
-            super(itemView);
-            gbr = itemView.findViewById(R.id.isilist_gambar);
-            judul = itemView.findViewById(R.id.isilist_namapaket);
-            deskripsi = itemView.findViewById(R.id.isilist_deskripsipaket);
-            harga = itemView.findViewById(R.id.isilist_dp);
-            cv = itemView.findViewById(R.id.isilist_cardview);
-            cv.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()){
-                case R.id.isilist_cardview:
-                    break;
-            }
-        }
+    public interface DataListener{
+        void onPromoClick(ModelPaket barang, int position);
     }
 }
