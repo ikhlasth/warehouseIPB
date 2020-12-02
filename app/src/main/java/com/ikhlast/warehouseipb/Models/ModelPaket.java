@@ -3,15 +3,24 @@ package com.ikhlast.warehouseipb.Models;
 import java.io.Serializable;
 
 public class ModelPaket implements Serializable {
-    private String judul, desc;
+    private String url, judul, desc;
     private int dp;
 
     public ModelPaket(){} //constructor
 
-    public ModelPaket(String judul, String desc, int dp){
+    public ModelPaket(String url, String judul, String desc, int dp){
+        this.url = url;
         this.judul = judul;
         this.desc = desc;
         this.dp = dp;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getJudul() {

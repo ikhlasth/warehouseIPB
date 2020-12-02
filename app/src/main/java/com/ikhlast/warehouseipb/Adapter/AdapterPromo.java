@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ikhlast.warehouseipb.Main.Promo;
@@ -39,10 +40,12 @@ public class AdapterPromo extends RecyclerView.Adapter<AdapterPromo.ViewHolder> 
 
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView judul, deskripsi, harga;
+        ImageView url;
         CardView cv;
 
         ViewHolder(View v){
             super(v);
+            url = v.findViewById(R.id.isilist_gbr);
             judul = v.findViewById(R.id.isilist_namapaket);
             deskripsi = v.findViewById(R.id.isilist_deskripsipaket);
             harga = v.findViewById(R.id.isilist_dp);
@@ -62,6 +65,7 @@ public class AdapterPromo extends RecyclerView.Adapter<AdapterPromo.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
+        final String gbr = daftarPromo.get(position).getUrl();
         final String judul = daftarPromo.get(position).getJudul();
         final String desc = daftarPromo.get(position).getDesc();
         final int dp = daftarPromo.get(position).getDp();
@@ -72,6 +76,8 @@ public class AdapterPromo extends RecyclerView.Adapter<AdapterPromo.ViewHolder> 
                 listener.onPromoClick(daftarPromo.get(position), position);
             }
         });
+
+        Glide.with(context).load(gbr).into(holder.url);
         holder.judul.setText(judul);
         holder.deskripsi.setText(desc);
         holder.harga.setText(dp+"");
