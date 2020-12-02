@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/baru_coklatagakterangbanget"
+    android:background="@color/baru_putih"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -12,13 +12,23 @@
         android:layout_height="match_parent"
         android:layout_margin="5dp"
         android:paddingBottom="50dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha=".5"
+        android:layout_above="@id/nav_home"
+        android:background="@color/baru_coklatgelapbanget" />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/kotak"
         app:itemIconTint="@drawable/nav_check"
         app:itemTextColor="@drawable/nav_check"
         app:menu="@menu/menuutama"/>
+    </RelativeLayout>
 </FrameLayout>

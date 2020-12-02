@@ -92,6 +92,7 @@ public class Promo extends AppCompatActivity implements AdapterPromo.DataListene
         });
     }
 
+    @Override
     public void onPromoClick(ModelPaket barang, final int position){
         if (db != null){
             Toast.makeText(Promo.this, "Anda mengklik paket "+barang, Toast.LENGTH_LONG).show();

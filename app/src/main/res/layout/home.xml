@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/baru_coklatagakterangbanget"
+    android:background="@color/baru_putih"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:gravity="center"
@@ -30,13 +30,23 @@
         android:textColor="@color/baru_coklatagakterangbanget"
         android:text="Titip sekarang!"/>
     </LinearLayout>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_home"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/kotak"
-        app:itemIconTint="@drawable/nav_check"
-        app:itemTextColor="@drawable/nav_check"
-        app:menu="@menu/menuutama"/>
+        android:layout_height="match_parent">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha=".5"
+            android:layout_above="@id/nav_home"
+            android:background="@color/baru_coklatgelapbanget" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/kotak"
+            app:itemIconTint="@drawable/nav_check"
+            app:itemTextColor="@drawable/nav_check"
+            app:menu="@menu/menuutama"/>
+    </RelativeLayout>
 </FrameLayout>

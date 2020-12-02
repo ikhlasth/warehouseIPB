@@ -5,17 +5,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/coklatilang"
+    android:background="@color/baru_coklatgelap"
     tools:context=".Main.Profil">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_home"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:hint="Hi user"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:translationZ="2dp"/>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        app:cardCornerRadius="50dp"
+        android:elevation="5dp"
+        android:backgroundTint="@color/baru_putih">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/profil_riwayat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Riwayat Pesanan"
+            android:textColor="@color/baru_coklatgelapbanget"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profil_recycler_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/profil_riwayat"
+            android:layout_margin="5dp"
+            android:paddingBottom="50dp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/buletancoklat"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="-20dp"
+            android:src="@drawable/buletancoklat"/>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/buletancoklat"
+                android:layout_marginTop="50dp"/>
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="85dp"
+                android:layout_marginHorizontal="20dp"
+                android:src="@drawable/buletancoklat" />
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="-20dp"
+                android:src="@drawable/buletancoklat"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/kotak"
-        app:itemIconTint="@drawable/nav_check"
-        app:itemTextColor="@drawable/nav_check"
-        app:menu="@menu/menuutama"/>
+        android:translationZ="2dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha=".5"
+            android:layout_above="@id/nav_home"
+            android:background="@color/baru_coklatgelapbanget" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/kotak"
+            app:itemIconTint="@drawable/nav_check"
+            app:itemTextColor="@drawable/nav_check"
+            app:menu="@menu/menuutama"/>
+    </RelativeLayout>
 
 </FrameLayout>
