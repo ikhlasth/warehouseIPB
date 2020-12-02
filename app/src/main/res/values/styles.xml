@@ -8,10 +8,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!--edittext-->
-        <item name="colorControlNormal">@color/ijogelap</item>
-        <item name="android:textColorHint">@color/ijogelap</item>
+        <item name="colorControlNormal">@color/baru_coklatgelapbanget</item>
+        <item name="android:textColorHint">@color/baru_coklatgelapbanget</item>
         <!---->
-        <item name="colorControlActivated">@color/ijogelap</item>
+        <item name="colorControlActivated">@color/baru_coklatgelapbanget</item>
         <item name="colorControlHighlight">@color/colorPrimaryDark</item>
 
         <item name="windowActionBar">false</item>
@@ -20,12 +20,12 @@
     <!--material-->
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
         <item name="colorSecondaryVariant">@color/colorPrimaryDark</item>
-        <item name="colorSurface">@color/ijogelap</item>
+        <item name="colorSurface">@color/baru_coklatgelapbanget</item>
         <item name="colorOnPrimary">@color/design_default_color_on_primary</item>
         <item name="colorOnSecondary">@color/design_default_color_on_secondary</item>
         <item name="colorOnBackground">@color/cardview_dark_background</item>
         <item name="colorOnError">@color/design_default_color_error</item>
-        <item name="colorOnSurface">@color/ijogelap</item>
+        <item name="colorOnSurface">@color/baru_coklatgelapbanget</item>
         <item name="scrimBackground">@color/mtrl_scrim_color</item>
         <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>

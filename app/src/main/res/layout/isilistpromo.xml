@@ -4,45 +4,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/isilist_cardview"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:backgroundTint="@color/coklatmuda"
+    android:backgroundTint="@color/baru_putih"
     app:cardCornerRadius="10dp"
-    android:elevation="2dp">
+    android:elevation="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:weightSum="1"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/isilist_namapaket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:hint="Paket 1"
+                android:textColor="@color/baru_hitam"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/isilist_deskripsipaket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:hint="Kasur + 20 set pakaian + sepatu + jasa service/laundry"
+                android:textColor="@color/baru_abu"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/isilist_dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Dp : Rp. 50 000"
+                android:textColor="@color/baru_coklatgelapbanget"
+                android:textSize="17sp" />
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/isilist_gbr"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@drawable/news"/>
-    <TextView
-        android:id="@+id/isilist_namapaket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:hint="Paket 1"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/ijogelap"/>
-        <TextView
-            android:id="@+id/isilist_deskripsipaket"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:textColor="@color/ijogelap"
-            android:hint="Kasur + 20 set pakaian + sepatu + jasa service/laundry"
-            android:textSize="18sp"/>
-        <TextView
-            android:id="@+id/isilist_dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/ijogelap"
-            android:hint="Dp : Rp. 50 000"
-            android:textSize="18sp"/>
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_weight="1"
+            android:src="@drawable/news" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

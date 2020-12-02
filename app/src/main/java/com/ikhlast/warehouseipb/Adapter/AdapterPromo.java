@@ -80,7 +80,7 @@ public class AdapterPromo extends RecyclerView.Adapter<AdapterPromo.ViewHolder> 
         Glide.with(context).load(gbr).into(holder.url);
         holder.judul.setText(judul);
         holder.deskripsi.setText(desc);
-        holder.harga.setText(dp+"");
+        holder.harga.setText("Dp : Rp."+dp);
     }
 
     @Override

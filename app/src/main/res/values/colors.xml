@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#a36a37</color>
     <color name="transparan">@android:color/transparent</color>
 
     <color name="ijogelapbgt">#0f3b3c</color>
@@ -11,23 +11,38 @@
     <color name="coklatmuda">#c09465</color>
     <color name="coklatilang">#e8d9d6</color>
 
+    <!--baru-->
+    <color name="baru_pink">#ff4d4d</color>
+    <color name="baru_hijau">#00ff00</color>
+    <color name="baru_putih">#ffffff</color>
+    <color name="baru_abu">#929292</color>
+    <color name="baru_hitam">#000000</color>
+    <color name="baru_coklatagakterangbanget">#f1e8df</color>
+    <color name="baru_coklatterangbanget">#fff6f6</color>
+    <color name="baru_coklatagakgelap">#a36a37</color>
+    <color name="baru_coklatgelap">#9e6027</color>
+    <color name="baru_coklatagakgelapbanget">#6c411a</color>
+    <color name="baru_coklatgelapbanget">#35200c</color>
+
+    <color name="toggletint">#9e6027</color>
+    <color name="tekslogindaftar">#35200c</color>
     <!-- Screens background color-->
-    <color name="bg_screen1">#e8d9d6</color>
-    <color name="bg_screen2">#c09465</color>
-    <color name="bg_screen3">#692900</color>
-    <color name="bg_screen4">#194546</color>
+    <color name="bg_screen1">#f1e8df</color>
+    <color name="bg_screen2">#f1e8df</color>
+    <color name="bg_screen3">#f1e8df</color>
+    <color name="bg_screen4">#f1e8df</color>
 
     <!-- dots inactive colors -->
-    <color name="dot_dark_screen1">#1AFCEDEA</color>
-    <color name="dot_dark_screen2">#1AFCEDEA</color>
-    <color name="dot_dark_screen3">#1AFCEDEA</color>
-    <color name="dot_dark_screen4">#1AFCEDEA</color>
+    <color name="dot_dark_screen1">#9e6027</color>
+    <color name="dot_dark_screen2">#9e6027</color>
+    <color name="dot_dark_screen3">#9e6027</color>
+    <color name="dot_dark_screen4">#9e6027</color>
 
     <!-- dots active colors -->
-    <color name="dot_light_screen1">#FFFFFF</color>
-    <color name="dot_light_screen2">#FFFFFF</color>
-    <color name="dot_light_screen3">#FFFFFF</color>
-    <color name="dot_light_screen4">#FFFFFF</color>
+    <color name="dot_light_screen1">#6c411a</color>
+    <color name="dot_light_screen2">#6c411a</color>
+    <color name="dot_light_screen3">#6c411a</color>
+    <color name="dot_light_screen4">#6c411a</color>
 
     <array name="array_dot_active">
         <item>@color/dot_light_screen1</item>

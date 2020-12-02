@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/coklatilang"
+    android:background="@color/baru_coklatagakterangbanget"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:gravity="center"
@@ -17,16 +17,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/ijogelap"
+        android:textColor="@color/baru_coklatgelapbanget"
         android:textSize="16sp"
         android:textStyle="bold"
         android:text="@string/belum_nitip"/>
     <Button
         android:id="@+id/home_tb_titip"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
         android:background="@drawable/tombol"
-        android:textColor="@color/coklatilang"
+        android:textColor="@color/baru_coklatagakterangbanget"
         android:text="Titip sekarang!"/>
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView

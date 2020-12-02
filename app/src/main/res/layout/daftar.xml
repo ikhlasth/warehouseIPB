@@ -33,7 +33,7 @@
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="55dp"
                 android:hint="Nama pengguna"
-                android:textColor="@color/ijogelap"
+                android:textColor="@color/tekslogindaftar"
                 android:inputType="textEmailAddress"
                 android:ems="10"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -41,7 +41,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/pas"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/ijogelap"
+            app:passwordToggleTint="@color/toggletint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
@@ -51,7 +51,7 @@
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="55dp"
                 android:hint="Kata sandi"
-                android:textColor="@color/ijogelap"
+                android:textColor="@color/tekslogindaftar"
                 android:paddingEnd="15dp"
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -59,7 +59,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/pas2"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/ijogelap"
+            app:passwordToggleTint="@color/toggletint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
@@ -69,7 +69,7 @@
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="55dp"
                 android:hint="Konfirmasi kata sandi"
-                android:textColor="@color/ijogelap"
+                android:textColor="@color/tekslogindaftar"
                 android:paddingEnd="15dp"
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -90,7 +90,7 @@
             android:id="@+id/atau"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/ijogelap"
+            android:textColor="@color/tekslogindaftar"
             android:text="Sudah punya akun?"/>
         <Button
             android:id="@+id/masuk"
@@ -100,7 +100,7 @@
             android:layout_marginHorizontal="50dp"
             android:background="@drawable/tombol2"
             android:text="Masuk"
-            android:textColor="@color/ijogelap"/>
+            android:textColor="@color/baru_coklatagakgelapbanget"/>
     </LinearLayout>
 
 </FrameLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/coklattua" android:state_checked="true"/>
-    <item android:color="@color/coklatilang"/>
+    <item android:color="@color/baru_coklatgelapbanget" android:state_checked="true"/>
+    <item android:color="@color/baru_coklatagakterangbanget"/>
 </selector>
