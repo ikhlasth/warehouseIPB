@@ -8,15 +8,31 @@
     android:background="@color/baru_coklatgelap"
     tools:context=".Main.Profil">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:hint="Hi user"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
+        android:translationZ="2dp">
+    <TextView
+        android:id="@+id/profil_nama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:hint="Hi, user"
+        android:textSize="25sp"
         android:textStyle="bold"
+        android:textColor="@color/baru_putih"
         android:translationZ="2dp"/>
+    <TextView
+        android:id="@+id/profil_status"
+        android:layout_below="@id/profil_nama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:hint="Status penitipan : "
+        android:textSize="20sp"
+        android:textColor="@color/baru_putih"/>
+    </RelativeLayout>
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

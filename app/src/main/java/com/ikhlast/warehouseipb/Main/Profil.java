@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,7 +27,7 @@ import com.ikhlast.warehouseipb.R;
 import java.util.ArrayList;
 
 public class Profil extends AppCompatActivity implements AdapterProfil.DataListener, BottomNavigationView.OnNavigationItemSelectedListener {
-    private DatabaseReference db;
+    private DatabaseReference db, dbStat;
     private RecyclerView rv;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -35,7 +36,9 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
     private ProgressDialog loading;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-    private String user;
+    private String user, statusPenitipan;
+
+    private TextView greeting, stat;
 
     BottomNavigationView bnv;
 
@@ -56,12 +59,45 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
         layoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(layoutManager);
 
+
         db = FirebaseDatabase.getInstance().getReference();
+        dbStat = FirebaseDatabase.getInstance().getReference().child("user").child(mUser.getUid()).child("status penitipan");
+
+        greeting = findViewById(R.id.profil_nama);
+        stat = findViewById(R.id.profil_status);
+
+        getStatusPenitipan();
+        greeting.setText("Hi, "+user);
+        if (dbStat != null) {
+            stat.setText(statusPenitipan);
+        }
         loading = ProgressDialog.show(Profil.this,
                 null,
                 "Harap tunggu...",
                 true,
                 false);
+
+        getRiwayatData();
+
+    }
+    //TODO Benerin statusPenitipan
+    private void getStatusPenitipan(){
+        dbStat.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child("status penitipan").exists()){
+                statusPenitipan = snapshot.child("status penitipan").child("nama").getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void getRiwayatData(){
         db.child("user").child(mUser.getUid()).child("riwayat").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -84,6 +120,7 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
             }
         });
     }
+
 
     @Override
     public void onRiwayatClick(ModelPaket barang, final int position){

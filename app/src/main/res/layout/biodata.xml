@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Main.Biodata"
-    android:background="@color/coklatilang"
+    android:background="@color/baru_coklatagakterangbanget"
     android:fitsSystemWindows="true">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="Nama lengkap sesuai KTP"
-            android:textColor="@color/ijogelap"
+            android:textColor="@color/tekslogindaftar"
             android:inputType="textEmailAddress"
             android:ems="15"/>
         </LinearLayout>
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:hint="Nomor hp (wa/telp)"
-                android:textColor="@color/ijogelap"
+                android:textColor="@color/tekslogindaftar"
                 android:inputType="number"
                 android:ems="15"/>
         </LinearLayout>
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:hint="Alamat sesuai KTP"
-                android:textColor="@color/ijogelap"
+                android:textColor="@color/tekslogindaftar"
                 android:inputType="textPostalAddress"
                 android:ems="15"/>
         </LinearLayout>
@@ -85,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:hint="Alamat penjemputan barang"
-                android:textColor="@color/ijogelap"
+                android:textColor="@color/tekslogindaftar"
                 android:inputType="textPostalAddress"
                 android:ems="15"/>
         </LinearLayout>
@@ -107,7 +107,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:background="@drawable/tombol2"
-            android:textColor="@color/ijogelap"
+            android:textColor="@color/baru_coklatagakgelapbanget"
             android:text="@string/pilih_foto"/>
 
         <Button
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/tombol"
-            android:textColor="@color/coklatilang"
+            android:textColor="@color/baru_coklatagakterangbanget"
             android:text="Kirim"/>
 
 
@@ -128,7 +128,7 @@
             android:layout_marginTop="8dp"
             android:max="100"
             android:progress="0"
-            android:progressBackgroundTint="@color/ijogelap"
+            android:progressBackgroundTint="@color/baru_coklatagakgelapbanget"
             android:visibility="gone" />
 
     </LinearLayout>

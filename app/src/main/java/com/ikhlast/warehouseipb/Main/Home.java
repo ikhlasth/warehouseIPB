@@ -11,13 +11,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ikhlast.warehouseipb.Fragment.HomeFragment;
 import com.ikhlast.warehouseipb.Fragment.InfoFragment;
 import com.ikhlast.warehouseipb.Fragment.PromoFragment;
@@ -52,41 +56,41 @@ public class Home extends AppCompatActivity implements BottomNavigationView.OnNa
         bnv = findViewById(R.id.nav_home);
         bnv.getMenu().getItem(1).setChecked(true);
         bnv.setOnNavigationItemSelectedListener(this);
-//
-//        titip = findViewById(R.id.home_tb_titip);
-//        titip.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                loading = ProgressDialog.show(Home.this,
-//                        null,
-//                        "Mengecek biodata...",
-//                        true,
-//                        false);
-//                check();
-//            }
-//        });
 
-//    }
-//    private void check(){
-//        database.child("user").child(user.getUid()).child("Foto KTP").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists()){
-//                    startActivity(new Intent(Home.this, Titip.class));
-//                    overridePendingTransition(0,0);
-//                    loading.dismiss();
-//                } else {
-//                    startActivity(new Intent(Home.this, Biodata.class));
-//                    overridePendingTransition(0,0);
-//                    loading.dismiss();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        titip = findViewById(R.id.home_tb_titip);
+        titip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loading = ProgressDialog.show(Home.this,
+                        null,
+                        "Mengecek biodata...",
+                        true,
+                        false);
+                check();
+            }
+        });
+
+    }
+    private void check(){
+        database.child("user").child(user.getUid()).child("Foto KTP").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    startActivity(new Intent(Home.this, Titip.class));
+                    overridePendingTransition(0,0);
+                    loading.dismiss();
+                } else {
+                    startActivity(new Intent(Home.this, Biodata.class));
+                    overridePendingTransition(0,0);
+                    loading.dismiss();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 
