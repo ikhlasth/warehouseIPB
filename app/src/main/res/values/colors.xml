@@ -24,6 +24,9 @@
     <color name="baru_coklatagakgelapbanget">#6c411a</color>
     <color name="baru_coklatgelapbanget">#35200c</color>
 
+    <color name="baru_coklatkemerahan">#ba6b57</color>
+    <color name="baru_coklatlebihkemerahan">#dda384</color>
+
     <color name="toggletint">#9e6027</color>
     <color name="tekslogindaftar">#35200c</color>
     <!-- Screens background color-->

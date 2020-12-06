@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +38,7 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
     private ProgressDialog loading;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-    private String user, statusPenitipan;
+    private String user, statusPenitipan, berlakuSampai;
 
     private TextView greeting, stat;
 
@@ -61,16 +63,13 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
 
 
         db = FirebaseDatabase.getInstance().getReference();
-        dbStat = FirebaseDatabase.getInstance().getReference().child("user").child(mUser.getUid()).child("status penitipan");
+        dbStat = FirebaseDatabase.getInstance().getReference("user").child(mUser.getUid()).child("status penitipan");
 
         greeting = findViewById(R.id.profil_nama);
         stat = findViewById(R.id.profil_status);
 
         getStatusPenitipan();
         greeting.setText("Hi, "+user);
-        if (dbStat != null) {
-            stat.setText(statusPenitipan);
-        }
         loading = ProgressDialog.show(Profil.this,
                 null,
                 "Harap tunggu...",
@@ -85,9 +84,20 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
         dbStat.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child("status penitipan").exists()){
-                statusPenitipan = snapshot.child("status penitipan").child("nama").getValue(String.class);
+                if (snapshot.exists()){
+                statusPenitipan = snapshot.child("nama").getValue(String.class);
+                berlakuSampai = snapshot.child("berakhir").getValue(String.class);
+                } else {
+                    statusPenitipan = "Anda belum menitipkan apapun";
                 }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    stat.setText(Html.fromHtml("<b>Anda memilih: </b>"+statusPenitipan+"<br></br><b>Berlaku sampai: </b>"+berlakuSampai, Html.FROM_HTML_MODE_COMPACT));
+//                    stat.setText(Html.fromHtml("<b>Anda memilih: </b>", Html.FROM_HTML_MODE_COMPACT)+statusPenitipan+"\n"+Html.fromHtml("<b>Berlaku sampai: </b>", Html.FROM_HTML_MODE_COMPACT)+berlakuSampai);
+                } else {
+                    stat.setText(Html.fromHtml("<b>Anda memilih: </b>"+statusPenitipan+"<br></br><b>Berlaku sampai: </b>"+berlakuSampai));
+//                    stat.setText(Html.fromHtml("<b>Anda memilih: </b>")+statusPenitipan+"\n"+Html.fromHtml("<b>Berlaku sampai: </b>")+berlakuSampai);
+                }
+//                stat.setText(Html.fromHtml("<b>Anda memilih: </b>")+statusPenitipan+"\n"+Html.fromHtml("<b>Berlaku sampai: </b>")+berlakuSampai);
             }
 
             @Override

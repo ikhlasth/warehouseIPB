@@ -5,34 +5,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/baru_coklatgelap"
+    android:background="@color/baru_coklatkemerahan"
     tools:context=".Main.Profil">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:translationZ="2dp">
-    <TextView
-        android:id="@+id/profil_nama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:hint="Hi, user"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="@color/baru_putih"
-        android:translationZ="2dp"/>
-    <TextView
-        android:id="@+id/profil_status"
-        android:layout_below="@id/profil_nama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:hint="Status penitipan : "
-        android:textSize="20sp"
-        android:textColor="@color/baru_putih"/>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profil_cv_nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="5dp">
+            <TextView
+                android:id="@+id/profil_nama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:hint="Hi, user"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/baru_coklatgelapbanget"
+                android:translationZ="2dp"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profil_cv_status_dl"
+            android:layout_below="@id/profil_cv_nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp">
+
+            <TextView
+                android:id="@+id/profil_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:hint="Status penitipan : "
+                android:textSize="20sp"
+                android:textColor="@color/baru_coklatgelapbanget"/>
+        </com.google.android.material.card.MaterialCardView>
+
     </RelativeLayout>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
