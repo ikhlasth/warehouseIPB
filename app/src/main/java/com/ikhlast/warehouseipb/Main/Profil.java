@@ -91,12 +91,9 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     stat.setText(Html.fromHtml("<b>Anda memilih: </b>"+statusPenitipan+"<br></br><b>Berlaku sampai: </b>"+berlakuSampai, Html.FROM_HTML_MODE_COMPACT));
-//                    stat.setText(Html.fromHtml("<b>Anda memilih: </b>", Html.FROM_HTML_MODE_COMPACT)+statusPenitipan+"\n"+Html.fromHtml("<b>Berlaku sampai: </b>", Html.FROM_HTML_MODE_COMPACT)+berlakuSampai);
                 } else {
                     stat.setText(Html.fromHtml("<b>Anda memilih: </b>"+statusPenitipan+"<br></br><b>Berlaku sampai: </b>"+berlakuSampai));
-//                    stat.setText(Html.fromHtml("<b>Anda memilih: </b>")+statusPenitipan+"\n"+Html.fromHtml("<b>Berlaku sampai: </b>")+berlakuSampai);
                 }
-//                stat.setText(Html.fromHtml("<b>Anda memilih: </b>")+statusPenitipan+"\n"+Html.fromHtml("<b>Berlaku sampai: </b>")+berlakuSampai);
             }
 
             @Override
