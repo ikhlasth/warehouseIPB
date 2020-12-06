@@ -11,6 +11,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +43,7 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
     private String user, statusPenitipan, berlakuSampai;
 
     private TextView greeting, stat;
+    private Button edit;
 
     BottomNavigationView bnv;
 
@@ -52,6 +55,14 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
         bnv = findViewById(R.id.nav_home);
         bnv.getMenu().getItem(2).setChecked(true);
         bnv.setOnNavigationItemSelectedListener(this);
+        edit = findViewById(R.id.profil_tombolEditProfil);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Profil.this, Biodata.class));
+                overridePendingTransition(0,0);
+            }
+        });
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         user = mUser.getEmail().replace("@whipb.com", "");

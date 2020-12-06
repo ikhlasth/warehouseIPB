@@ -29,8 +29,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -96,6 +99,7 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         nick = user.getEmail().replace("@whipb.com","");
+        checkIfRegistered();
     }
 
     @Override
@@ -138,8 +142,28 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
                 }).create().show();
     }
 
+    private void checkIfRegistered(){
+        database.child("user").child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    nama.setText(snapshot.child("Nama Lengkap").getValue(String.class));
+                    nohp.setText(snapshot.child("Nomor HP").getValue(String.class));
+                    alamatasli.setText(snapshot.child("Alamat Rumah").getValue(String.class));
+                    alamatkos.setText(snapshot.child("Alamat Barang").getValue(String.class));
+                    //TODO: Edit gambar preview from editprofil
+//                    gambar.
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     public void toStorage(){
         String namaL = nama.getText().toString();
+        String hp = nohp.getText().toString();
         String alamatrumah = alamatasli.getText().toString();
         final String alamatkosan = alamatkos.getText().toString();
 
@@ -161,6 +185,7 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
 //        final String link = ref.child(pathimg).getDownloadUrl().toString();
         database.child("user").child(user.getUid()).child("Nama Lengkap").setValue(namaL);
         database.child("user").child(user.getUid()).child("Alamat Rumah").setValue(alamatrumah);
+        database.child("user").child(user.getUid()).child("Nomor HP").setValue(hp);
         database.child("user").child(user.getUid()).child("Alamat Barang").setValue(alamatkosan);
         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
