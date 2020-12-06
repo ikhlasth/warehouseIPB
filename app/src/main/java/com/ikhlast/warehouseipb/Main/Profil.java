@@ -79,7 +79,6 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
         getRiwayatData();
 
     }
-    //TODO Benerin statusPenitipan
     private void getStatusPenitipan(){
         dbStat.addValueEventListener(new ValueEventListener() {
             @Override
