@@ -100,7 +100,9 @@
         <ImageView
             android:id="@+id/biodata_fotoktp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingVertical="5dp"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/biodata_pilihfoto"

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -47,7 +49,7 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
     Button pilih, kirim;
     EditText nama, nohp, alamatasli, alamatkos;
     ImageView gambar;
-    String nick;
+    String nick, imgRef;
     int permission_all = 1;
 
     ProgressBar pbar;
@@ -57,6 +59,8 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private DatabaseReference database;
+
+    private ProgressDialog loading;
 
     private static final int REQUEST_CODE_CAMERA = 1;
     private static final int REQUEST_CODE_GALLERY = 2;
@@ -85,7 +89,6 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
         kirim = findViewById(R.id.biodata_kirim);
         //img
         gambar = findViewById(R.id.biodata_fotoktp);
-        gambar.setVisibility(View.GONE);
         pbar = findViewById(R.id.biodata_progressBar);
 
         //button action
@@ -93,13 +96,14 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
         pilih.setOnClickListener(this);
         kirim.setOnClickListener(this);
 
-        alert = new AlertDialog.Builder(this);
+
         ref = FirebaseStorage.getInstance().getReference();
         database = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         nick = user.getEmail().replace("@whipb.com","");
         checkIfRegistered();
+
     }
 
     @Override
@@ -122,6 +126,7 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void pilihfoto(){
+        alert = new AlertDialog.Builder(this);
         CharSequence[] menu = {"Kamera", "Galeri"};
         alert
                 .setTitle("Pilih foto dari")
@@ -146,14 +151,16 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
         database.child("user").child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child("Foto KTP").exists()) {
                     nama.setText(snapshot.child("Nama Lengkap").getValue(String.class));
                     nohp.setText(snapshot.child("Nomor HP").getValue(String.class));
                     alamatasli.setText(snapshot.child("Alamat Rumah").getValue(String.class));
                     alamatkos.setText(snapshot.child("Alamat Barang").getValue(String.class));
-                    //TODO: Edit gambar preview from editprofil
-//                    gambar.
+                    imgRef = snapshot.child("Foto KTP").getValue(String.class);
+                    gambar.setVisibility(View.VISIBLE);
+                    Glide.with(Biodata.this).load(imgRef).into(gambar);
+                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -220,6 +227,7 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void checkEntry() {
+        alert = new AlertDialog.Builder(this);
         String namaL = nama.getText().toString();
         String nhp = nohp.getText().toString();
         String alamatrumah = alamatasli.getText().toString();
