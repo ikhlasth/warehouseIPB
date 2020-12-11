@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/titip_textinput1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/titip_et_jenis_hewan"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Jenis hewan (kucing, anjirng, dll)"
+                android:textColor="@color/tekslogindaftar"
+                android:inputType="text"
+                android:ems="15"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/titip_et_penyakit"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Penyakit"
+                android:textColor="@color/tekslogindaftar"
+                android:inputType="text"
+                android:ems="15"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/titip_et_jenisMerek"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Jenis atau merek makanan"
+                android:textColor="@color/tekslogindaftar"
+                android:inputType="text"
+                android:ems="15"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/titip_et_vaksin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Vaksin yang pernah diberikan"
+                android:textColor="@color/tekslogindaftar"
+                android:inputType="text"
+                android:ems="15"/>
+        </LinearLayout>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</ScrollView>
