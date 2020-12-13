@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Main.Biodata"
-    android:background="@color/baru_coklatagakterangbanget"
+    android:background="@color/baru_putih"
     android:fitsSystemWindows="true">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -33,11 +33,6 @@
         android:id="@+id/textinput1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
         <EditText
             android:id="@+id/biodata_namalengkap"
             android:layout_width="match_parent"
@@ -46,12 +41,11 @@
             android:textColor="@color/tekslogindaftar"
             android:inputType="textEmailAddress"
             android:ems="15"/>
-        </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/biodata_nomorhp"
                 android:layout_width="match_parent"
@@ -60,12 +54,10 @@
                 android:textColor="@color/tekslogindaftar"
                 android:inputType="number"
                 android:ems="15"/>
-        </LinearLayout>
-
-        <LinearLayout
+    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/biodata_alamatasli"
                 android:layout_width="match_parent"
@@ -74,12 +66,10 @@
                 android:textColor="@color/tekslogindaftar"
                 android:inputType="textPostalAddress"
                 android:ems="15"/>
-        </LinearLayout>
-
-        <LinearLayout
+    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/biodata_alamatkos"
                 android:layout_width="match_parent"
@@ -88,7 +78,6 @@
                 android:textColor="@color/tekslogindaftar"
                 android:inputType="textPostalAddress"
                 android:ems="15"/>
-        </LinearLayout>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,7 +98,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:background="@drawable/tombol2"
-            android:textColor="@color/baru_coklatagakgelapbanget"
+            android:textColor="@color/pastel_ijomuda"
             android:text="@string/pilih_foto"/>
 
         <Button
@@ -118,8 +107,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/tombol"
-            android:textColor="@color/baru_coklatagakterangbanget"
-            android:text="Kirim"/>
+            android:textColor="@color/baru_putih"
+            android:text="Kirim"
+            android:fontFamily="@font/sofia_pro_black_az"/>
 
 
         <ProgressBar

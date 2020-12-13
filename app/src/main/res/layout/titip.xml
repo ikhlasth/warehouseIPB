@@ -28,7 +28,7 @@
                 android:layout_marginHorizontal="5dp"
                 android:background="@drawable/tombol2"
                 android:text="barang"
-                android:textColor="@color/baru_coklatagakgelapbanget"/>
+                android:textColor="@color/pastel_ijomuda"/>
             <Button
                 android:id="@+id/titip_bt_hewan"
                 android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
                 android:layout_marginHorizontal="5dp"
                 android:background="@drawable/tombol2"
                 android:text="hewan"
-                android:textColor="@color/baru_coklatagakgelapbanget"/>
+                android:textColor="@color/pastel_ijomuda"/>
             <Button
                 android:id="@+id/titip_bt_keduanya"
                 android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
                 android:layout_marginHorizontal="5dp"
                 android:background="@drawable/tombol2"
                 android:text="Keduanya"
-                android:textColor="@color/baru_coklatagakgelapbanget"/>
+                android:textColor="@color/pastel_ijomuda"/>
         </LinearLayout>
         <FrameLayout
             android:id="@+id/titip_container"

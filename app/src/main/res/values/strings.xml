@@ -15,7 +15,7 @@
     <string name="slide_2_title">Penitipan Barang</string>
     <string name="slide_2_desc">Titipkan barang anda tanpa khawatir berjamur!</string>
 
-    <string name="slide_3_title">Layanan servis Kendaraan</string>
+    <string name="slide_3_title">Layanan Servis Kendaraan</string>
     <string name="slide_3_desc">Jaga kesehatan kendaraan anda dengan jasa servis!</string>
 
     <string name="slide_4_title">Layanan Perawatan Barang</string>
@@ -30,4 +30,5 @@
     <string name="kami_membutuhkan_nomor_handphone_yang_terhubung_ke_whatsapp_untuk_menghubungi_anda_dalam_hal_konfirmasi_dan_sebagainya">Kami membutuhkan nomor handphone yang terhubung ke Whatsapp untuk menghubungi anda dalam hal konfirmasi dan sebagainya</string>
     <string name="alamat_asli_anda_dibutuhkan_untuk_memastikan_bahwa_pesanan_anda_bukanlah_pesanan_fiktif">Alamat asli anda dibutuhkan untuk memastikan bahwa pesanan anda bukanlah pesanan fiktif</string>
     <string name="kami_membutuhkan_alamat_penjemputan_barang_untuk_memindahkan_barang_anda_ke_gudang_kami">Kami membutuhkan alamat penjemputan barang untuk memindahkan barang anda ke gudang kami</string>
+    <string name="titip_sekarang">Titip sekarang!</string>
 </resources>

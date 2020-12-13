@@ -13,8 +13,12 @@
         android:roundIcon="@drawable/logo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main.Profil"/>
-        <activity android:name=".Main.Promo" />
+        <activity android:name=".TestLab.DinamicLayout"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Main.Profil"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Main.Promo"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Main.Biodata"
             android:screenOrientation="portrait"
@@ -32,7 +36,8 @@
         <activity
             android:name=".Credentials.Daftar"
             android:screenOrientation="portrait" />
-        <activity android:name=".Main.Home" />
+        <activity android:name=".Main.Home"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Credentials.Login"
             android:screenOrientation="portrait" />

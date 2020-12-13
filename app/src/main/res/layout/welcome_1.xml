@@ -22,18 +22,19 @@
             android:text="@string/slide_1_title"
             android:textColor="@color/baru_coklatgelapbanget"
             android:textSize="@dimen/slide_title"
-            android:textStyle="bold" />
+            android:fontFamily="@font/sofia_pro_black_az"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:paddingLeft="@dimen/desc_padding"
             android:paddingRight="@dimen/desc_padding"
             android:text="@string/slide_1_desc"
             android:textAlignment="center"
             android:textColor="@color/baru_coklatgelap"
-            android:textSize="@dimen/slide_desc" />
+            android:textSize="@dimen/slide_desc"
+            android:fontFamily="@font/sofia_pro_light_az"/>
 
     </LinearLayout>
 </RelativeLayout>

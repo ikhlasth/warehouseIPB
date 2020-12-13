@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jenis hewan dapat diisi dengan kucing, anjing, dan sebagainya"/>
+        android:text="Jenis hewan dapat diisi dengan kucing, anjing, kelinci, dan sebagainya"/>
     </LinearLayout>
 
     <LinearLayout
@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kami butuh kondisi kesehatan hewan agar memudahkan kami untuk mengurus hewan peliharaan kamu"/>
+            android:text="Kami butuh kondisi kesehatan hewan anda agar memudahkan kami untuk merawatnya dengan baik"/>
     </LinearLayout>
 
     <LinearLayout
@@ -61,7 +61,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kami membutuhkan informasi vaksinasi hewan, jika belum pernah diberi vaksin, isikan dengan -"/>
+            android:text="Kami membutuhkan informasi vaksinasi hewan, jika peliharaan anda belum pernah diberi vaksin, isikan dengan -"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/titip_textinput1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
             <EditText
                 android:id="@+id/titip_et_jenis_hewan"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:hint="Jenis hewan (kucing, anjirng, dll)"
+                android:hint="Jenis hewan (kucing, anjing, dll)"
                 android:textColor="@color/tekslogindaftar"
                 android:inputType="text"
                 android:ems="15"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/titip_et_penyakit"
                 android:layout_width="match_parent"
@@ -34,12 +32,11 @@
                 android:textColor="@color/tekslogindaftar"
                 android:inputType="text"
                 android:ems="15"/>
-        </LinearLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/titip_et_jenisMerek"
                 android:layout_width="match_parent"
@@ -48,12 +45,11 @@
                 android:textColor="@color/tekslogindaftar"
                 android:inputType="text"
                 android:ems="15"/>
-        </LinearLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/titip_et_vaksin"
                 android:layout_width="match_parent"
@@ -62,8 +58,38 @@
                 android:textColor="@color/tekslogindaftar"
                 android:inputType="text"
                 android:ems="15"/>
-        </LinearLayout>
-
     </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tambahkan catatan khusus"
+            android:textColor="@color/pastel_ijomuda"
+            android:textSize="18sp"/>
+        </LinearLayout>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/baru_putih"
+        app:cardCornerRadius="10dp"
+        android:elevation="5dp">
+
+        <EditText
+            android:id="@+id/titip_hewan_add_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:inputType="text"
+            android:background="@color/transparan"/>
+    </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 </ScrollView>

@@ -30,7 +30,7 @@
                 android:hint="Paket 1"
                 android:textColor="@color/baru_coklatgelapbanget"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/sofia_pro_black_az"/>
             <TextView
                 android:id="@+id/riwayat_deskripsipaket"
                 android:layout_width="wrap_content"
@@ -38,7 +38,8 @@
                 android:layout_marginBottom="5dp"
                 android:hint="Kasur + 20 set pakaian + sepatu + jasa service/laundry"
                 android:textColor="@color/baru_coklatagakgelapbanget"
-                android:textSize="16sp"/>
+                android:fontFamily="@font/sofia_pro_medium_az"
+                android:textSize="17sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -53,7 +54,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rp 50000"
-                android:textColor="@color/baru_pink"/>
+                android:textColor="@color/baru_pink"
+                android:fontFamily="@font/sofia_pro_light_az"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -84,7 +84,7 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
         alamatkos = findViewById(R.id.biodata_alamatkos);
         //button
         fab = findViewById(R.id.biodata_fab);
-        fab.setRippleColor(getResources().getColor(R.color.baru_coklatgelapbanget));
+        fab.setRippleColor(getResources().getColor(R.color.pastel_ijomuda));
         pilih = findViewById(R.id.biodata_pilihfoto);
         kirim = findViewById(R.id.biodata_kirim);
         //img
@@ -145,6 +145,7 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
                         }
                     }
                 }).create().show();
+
     }
 
     private void checkIfRegistered(){
@@ -206,7 +207,6 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
                     }
                 });
                 Toast.makeText(Biodata.this, "Berhasil mengirim biodata", Toast.LENGTH_LONG).show();
-                toTitip();
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
@@ -266,17 +266,12 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void toTitip(){
-        startActivity(new Intent(Biodata.this, Titip.class));
-        overridePendingTransition(0,0);
-        finish();
-    }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.biodata_fab:
-                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.baru_coklatgelapbanget)));
+                alert = new AlertDialog.Builder(this);
+                fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.pastel_ijomuda)));
                 alert.setView(R.layout.help).setTitle("Keterangan").setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -287,6 +282,7 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.biodata_pilihfoto:
                 pilihfoto();
+                pilih.setTextColor(getResources().getColor(R.color.pastel_ijomuda));
                 break;
             case R.id.biodata_kirim:
                 checkEntry();

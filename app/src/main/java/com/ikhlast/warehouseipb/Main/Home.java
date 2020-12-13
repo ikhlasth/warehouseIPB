@@ -3,8 +3,6 @@ package com.ikhlast.warehouseipb.Main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -22,11 +20,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.ikhlast.warehouseipb.Fragment.HomeFragment;
-import com.ikhlast.warehouseipb.Fragment.InfoFragment;
-import com.ikhlast.warehouseipb.Fragment.PromoFragment;
 import com.ikhlast.warehouseipb.Preferences.Sessions;
 import com.ikhlast.warehouseipb.R;
+import com.ikhlast.warehouseipb.TestLab.DynamicTester2;
+import com.ikhlast.warehouseipb.TestLab.TestDynamic;
 
 public class Home extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth mAuth;
@@ -137,6 +134,7 @@ public class Home extends AppCompatActivity implements BottomNavigationView.OnNa
                 break;
             case R.id.info_menu:
                 startActivity(new Intent(Home.this, Profil.class));
+//                startActivity(new Intent(Home.this, DynamicTester2.class));
                 overridePendingTransition(0,0);
                 finish();
                 break;

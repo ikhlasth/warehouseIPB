@@ -2,19 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <gradient
-                android:startColor="@color/baru_coklatgelapbanget"
-                android:endColor="@color/baru_coklatgelap"
-                android:angle="0" />
-            <corners android:radius="50dp"/>
-        </shape>
-    </item>
-    <item android:state_focused="true">
-        <shape android:shape="rectangle">
-            <gradient
-                android:startColor="@color/baru_coklatgelapbanget"
-                android:endColor="@color/baru_coklatgelap"
-                android:angle="0" />
+        <stroke android:color="@color/pastel_ijotua"
+            android:width="2dp"/>
             <corners android:radius="50dp"/>
         </shape>
     </item>
@@ -28,13 +17,9 @@
         </shape>
     </item>
     <item>
-        <shape android:shape="rectangle">
-            <gradient
-            android:startColor="@color/baru_coklatgelapbanget"
-                android:centerColor="@color/baru_coklatagakgelapbanget"
-            android:endColor="@color/baru_coklatgelap"
-            android:angle="0" />
-            <corners android:radius="50dp"/>
+        <shape android:shape="rectangle"
+            android:tint="@color/pastel_ijomuda">
+            <corners android:radius="50dp" />
         </shape>
     </item>
 </selector>

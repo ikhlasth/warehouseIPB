@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ikhlast.warehouseipb.Adapter.AdapterProfil;
 import com.ikhlast.warehouseipb.Models.ModelPaket;
+import com.ikhlast.warehouseipb.Preferences.Sessions;
 import com.ikhlast.warehouseipb.R;
 
 import java.util.ArrayList;
@@ -45,6 +48,9 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
     private TextView greeting, stat;
     private Button edit;
 
+    AlertDialog.Builder alert;
+    Sessions sessions;
+
     BottomNavigationView bnv;
 
     @Override
@@ -52,6 +58,7 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profil);
 
+        sessions = new Sessions(getApplicationContext());
         bnv = findViewById(R.id.nav_home);
         bnv.getMenu().getItem(2).setChecked(true);
         bnv.setOnNavigationItemSelectedListener(this);
@@ -166,4 +173,33 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        logout();
+    }
+
+
+    public void logout(){
+        alert = new AlertDialog.Builder(this);
+        alert
+                .setTitle("Keluar")
+                .setMessage("Apakah anda ingin Keluar?")
+                .setCancelable(false)
+                .setPositiveButton("Keluar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        db.child("sedangAktif").child(user).removeValue();
+                        sessions.logoutUser();
+                        mAuth.signOut();
+                        finish();
+                        overridePendingTransition(0,0);
+                    }
+                }).setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        }).create().show();
+    }
 }

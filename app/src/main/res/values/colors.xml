@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#a36a37</color>
+    <color name="colorAccent">#425f2f</color>
     <color name="transparan">@android:color/transparent</color>
 
     <color name="ijogelapbgt">#0f3b3c</color>
@@ -27,8 +27,8 @@
     <color name="baru_coklatkemerahan">#ba6b57</color>
     <color name="baru_coklatlebihkemerahan">#dda384</color>
 
-    <color name="toggletint">#9e6027</color>
-    <color name="tekslogindaftar">#35200c</color>
+    <color name="toggletint">#425f2f</color>
+    <color name="tekslogindaftar">#7e9f82</color>
 
     <!--paling baru-->
     <color name="pastel_ijotua">#425f2f</color>

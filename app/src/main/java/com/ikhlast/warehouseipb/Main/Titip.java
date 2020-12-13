@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -13,10 +14,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Layout;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -101,8 +107,8 @@ public class Titip extends AppCompatActivity implements View.OnClickListener {
                 keduanya.setBackgroundResource(R.drawable.tombol2);
                 barang.setBackgroundResource(R.drawable.tombol);
                 barang.setTextColor(Color.parseColor("#e8d9d6"));
-                hewan.setTextColor(Color.parseColor("#6c411a"));
-                keduanya.setTextColor(Color.parseColor("#6c411a"));
+                hewan.setTextColor(Color.parseColor("#7e9f82"));
+                keduanya.setTextColor(Color.parseColor("#7e9f82"));
                 loadFrag(new TitipBarangFragment());
                 break;
             case R.id.titip_bt_hewan:
@@ -113,8 +119,8 @@ public class Titip extends AppCompatActivity implements View.OnClickListener {
                 keduanya.setBackgroundResource(R.drawable.tombol2);
                 hewan.setBackgroundResource(R.drawable.tombol);
                 hewan.setTextColor(Color.parseColor("#e8d9d6"));
-                keduanya.setTextColor(Color.parseColor("#6c411a"));
-                barang.setTextColor(Color.parseColor("#6c411a"));
+                keduanya.setTextColor(Color.parseColor("#7e9f82"));
+                barang.setTextColor(Color.parseColor("#7e9f82"));
                 loadFrag(new TitipHewanFragment());
                 break;
             case R.id.titip_bt_keduanya:
@@ -125,8 +131,8 @@ public class Titip extends AppCompatActivity implements View.OnClickListener {
                 barang.setBackgroundResource(R.drawable.tombol2);
                 keduanya.setBackgroundResource(R.drawable.tombol);
                 keduanya.setTextColor(Color.parseColor("#e8d9d6"));
-                hewan.setTextColor(Color.parseColor("#6c411a"));
-                barang.setTextColor(Color.parseColor("#6c411a"));
+                hewan.setTextColor(Color.parseColor("#7e9f82"));
+                barang.setTextColor(Color.parseColor("#7e9f82"));
                 loadFrag(new TitipKeduanyaFragment());
                 break;
             case R.id.titip_fab:
@@ -140,6 +146,7 @@ public class Titip extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
+
     private boolean loadFrag(Fragment f){
         if (f != null){
             fm.beginTransaction().replace(R.id.titip_container, f).commit();
@@ -149,7 +156,7 @@ public class Titip extends AppCompatActivity implements View.OnClickListener {
     }
     private void fabOnClick(int l){
         alert = new AlertDialog.Builder(this);
-        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.baru_coklatgelapbanget)));
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.pastel_ijomuda)));
         alert.setView(l).setTitle("Keterangan").setCancelable(true).setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/coklatilang"
+    android:background="@color/baru_putih"
     android:layout_gravity="center"
     android:fitsSystemWindows="true"
     android:gravity="center">
@@ -53,7 +53,7 @@
                 android:hint="Kata sandi"
                 android:textColor="@color/tekslogindaftar"
                 android:paddingEnd="15dp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -71,7 +71,7 @@
                 android:hint="Konfirmasi kata sandi"
                 android:textColor="@color/tekslogindaftar"
                 android:paddingEnd="15dp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -84,14 +84,16 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:background="@drawable/tombol"
-            android:textColor="@color/coklatilang"
-            android:text="Daftar"/>
+            android:textColor="@color/baru_putih"
+            android:text="Daftar"
+            android:fontFamily="@font/sofia_pro_black_az"/>
         <TextView
             android:id="@+id/atau"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/tekslogindaftar"
-            android:text="Sudah punya akun?"/>
+            android:text="Sudah punya akun?"
+            android:fontFamily="@font/sofia_pro_regular_italic_az"/>
         <Button
             android:id="@+id/masuk"
             android:layout_width="match_parent"
@@ -100,7 +102,8 @@
             android:layout_marginHorizontal="50dp"
             android:background="@drawable/tombol2"
             android:text="Masuk"
-            android:textColor="@color/baru_coklatagakgelapbanget"/>
+            android:textColor="@color/pastel_ijomuda"
+            android:fontFamily="@font/sofia_pro_black_az"/>
     </LinearLayout>
 
 </FrameLayout>

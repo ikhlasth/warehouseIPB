@@ -19,16 +19,17 @@
         android:layout_height="wrap_content"
         android:textColor="@color/baru_coklatgelapbanget"
         android:textSize="16sp"
-        android:textStyle="bold"
-        android:text="@string/belum_nitip"/>
+        android:text="@string/belum_nitip"
+        android:fontFamily="@font/sofia_pro_black_az"/>
     <Button
         android:id="@+id/home_tb_titip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="20dp"
         android:background="@drawable/tombol"
-        android:textColor="@color/baru_coklatagakterangbanget"
-        android:text="Titip sekarang!"/>
+        android:textColor="@color/baru_putih"
+        android:text="@string/titip_sekarang"
+        android:fontFamily="@font/sofia_pro_black_az"/>
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,7 +39,7 @@
             android:layout_height="1dp"
             android:alpha=".5"
             android:layout_above="@id/nav_home"
-            android:background="@color/baru_coklatgelapbanget" />
+            android:background="@color/baru_abu" />
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_home"
             android:layout_width="match_parent"
@@ -47,6 +48,6 @@
             android:background="@drawable/kotak"
             app:itemIconTint="@drawable/nav_check"
             app:itemTextColor="@drawable/nav_check"
-            app:menu="@menu/menuutama"/>
+            app:menu="@menu/menuutama" />
     </RelativeLayout>
 </FrameLayout>

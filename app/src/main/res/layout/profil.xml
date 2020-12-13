@@ -5,69 +5,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/baru_coklatkemerahan"
+    android:background="@color/pastel_pink"
     tools:context=".Main.Profil">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:translationZ="2dp">
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/profil_linearcv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/profil_cv_nama"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="5dp">
-                <TextView
-                    android:id="@+id/profil_nama"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="5dp"
-                    android:hint="Hi, user"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/baru_coklatgelapbanget"
-                    android:translationZ="2dp"/>
-
-            </com.google.android.material.card.MaterialCardView>
-            <Button
-                android:id="@+id/profil_tombolEditProfil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:drawableStart="@drawable/edit"
-                android:padding="5dp"
-                android:background="@drawable/tombol2"
-                android:text="Edit profil"/>
-
-        </LinearLayout>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/profil_cv_status_dl"
-            android:layout_below="@id/profil_linearcv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="5dp">
+            android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/profil_nama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:layout_margin="10dp"
+                android:hint="Hi, user"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/baru_putih"
+                android:fontFamily="@font/sofia_pro_black_az"
+                android:translationZ="2dp"/>
+
+            <Button
+                android:id="@+id/profil_tombolEditProfil"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/tombol2"
+                android:drawableStart="@drawable/edit"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="10dp"
+                android:text="Edit profil"
+                android:textColor="@color/pastel_ijomuda" />
+
+        </RelativeLayout>
+
+            <TextView
+                android:layout_below="@id/profil_linearcv"
                 android:id="@+id/profil_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="10dp"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="5dp"
                 android:hint="Status penitipan : "
                 android:textSize="20sp"
-                android:textColor="@color/baru_coklatgelapbanget"/>
-        </com.google.android.material.card.MaterialCardView>
+                android:textColor="@color/baru_putih"/>
 
     </RelativeLayout>
 
@@ -91,7 +80,8 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:text="Riwayat Pesanan"
-            android:textColor="@color/baru_coklatgelapbanget"/>
+            android:textColor="@color/baru_coklatgelapbanget"
+            android:fontFamily="@font/sofia_pro_black_az"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/profil_recycler_list"
             android:layout_width="match_parent"
@@ -102,39 +92,13 @@
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="10dp"
-        android:src="@drawable/buletancoklat"/>
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="-20dp"
-            android:src="@drawable/buletancoklat"/>
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/buletancoklat"
-                android:layout_marginTop="50dp"/>
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="85dp"
-                android:layout_marginHorizontal="20dp"
-                android:src="@drawable/buletancoklat" />
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="-20dp"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="-90dp"
+                android:layout_marginRight="-110dp"
                 android:src="@drawable/buletancoklat"/>
-
-    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -145,7 +109,7 @@
             android:layout_height="1dp"
             android:alpha=".5"
             android:layout_above="@id/nav_home"
-            android:background="@color/baru_coklatgelapbanget" />
+            android:background="@color/baru_abu" />
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_home"
             android:layout_width="match_parent"
