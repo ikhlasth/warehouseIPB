@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/titip_et_jenis_hewan"
+                android:id="@+id/titipHewan_et_jenis_hewan"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:hint="Jenis hewan (kucing, anjing, dll)"
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/titip_et_penyakit"
+                android:id="@+id/titipHewan_et_penyakit"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:hint="Penyakit"
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/titip_et_jenisMerek"
+                android:id="@+id/titipHewan_et_jenisMerek"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:hint="Jenis atau merek makanan"
@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/titip_et_vaksin"
+                android:id="@+id/titipHewan_et_vaksin"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:hint="Vaksin yang pernah diberikan"
@@ -84,12 +84,20 @@
         android:elevation="5dp">
 
         <EditText
-            android:id="@+id/titip_hewan_add_note"
+            android:id="@+id/titipHewan_add_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:inputType="text"
             android:background="@color/transparan"/>
     </com.google.android.material.card.MaterialCardView>
+        <Button
+            android:id="@+id/titipHewan_titipnow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tombol"
+            android:text="Titip"
+            android:textColor="@color/baru_putih"
+            android:fontFamily="@font/sofia_pro_black_az"/>
     </LinearLayout>
 </ScrollView>

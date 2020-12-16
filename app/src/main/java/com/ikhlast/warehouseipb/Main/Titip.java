@@ -44,7 +44,7 @@ public class Titip extends AppCompatActivity implements View.OnClickListener {
     TextView tvKapasitas;
     int capacity;
 
-    Boolean FH, FB, FHB;
+    Boolean FH = false, FB = false, FHB = false;
     FloatingActionButton fab;
     Button hewan, barang, keduanya;
     AlertDialog.Builder alert;
@@ -140,8 +140,10 @@ public class Titip extends AppCompatActivity implements View.OnClickListener {
                     fabOnClick(R.layout.helph);
                 } else if (FB){
                     fabOnClick(R.layout.helpb);
-                } else {
+                } else if (FHB){
                     fabOnClick(R.layout.helphb);
+                } else {
+                    fabOnClick(R.layout.helpmain);
                 }
                 break;
         }

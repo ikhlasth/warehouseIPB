@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:backgroundTint="@color/baru_coklatagakterangbanget"
+    android:backgroundTint="@color/pastel_pink"
     android:background="@color/baru_hitam"
     app:cardCornerRadius="10dp"
     android:elevation="50dp">
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:hint="Paket 1"
-                android:textColor="@color/baru_coklatgelapbanget"
+                android:textColor="@color/baru_putih"
                 android:textSize="20sp"
                 android:fontFamily="@font/sofia_pro_black_az"/>
             <TextView
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:hint="Kasur + 20 set pakaian + sepatu + jasa service/laundry"
-                android:textColor="@color/baru_coklatagakgelapbanget"
+                android:textColor="@color/baru_putih"
                 android:fontFamily="@font/sofia_pro_medium_az"
                 android:textSize="17sp"/>
         </LinearLayout>

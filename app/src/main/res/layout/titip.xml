@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="40dp"
         app:cardCornerRadius="50dp"
-        android:backgroundTint="@color/baru_coklatagakterangbanget"
+        android:backgroundTint="@color/baru_putih"
         android:elevation="5dp">
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:backgroundTint="@color/baru_coklatgelap"
+        android:backgroundTint="@color/pastel_coklat"
         app:cardCornerRadius="50dp"
         android:elevation="50dp">
         <TextView

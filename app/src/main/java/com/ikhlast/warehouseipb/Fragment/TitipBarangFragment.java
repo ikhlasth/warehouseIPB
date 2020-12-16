@@ -118,7 +118,13 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
                 if (containerTitip.getChildCount() > 0){
                     listAll();
                 } else {
-                    Toast.makeText(getContext(), "Anda belum menambahkan barang apapun", Toast.LENGTH_SHORT).show();
+                    alert = new AlertDialog.Builder(getContext());
+                    alert.setTitle("Eits").setMessage("Anda belum menambahkan apapun").setCancelable(true).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    }).create().show();
                 }
                 break;
         }
@@ -134,14 +140,14 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
             String tv1 = et1.getText().toString();
             String tv2 = et2.getText().toString();
             if (tv1.equals("")){
-                et1.setError("tidak boleh kosong");
+                et1.setError("Tidak boleh kosong");
                 break;
             } else if (tv2.equals("")){
                 et2.setError("Tidak boleh kosong");
                 break;
             }
             isibarang.add(tv1+" "+tv2);
-            tex += tv1+tv2+"%";
+            tex += tv1+tv2+"%%";
             Toast.makeText(getContext(), tex, Toast.LENGTH_SHORT).show();
         }
     }

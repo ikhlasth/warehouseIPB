@@ -13,10 +13,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/help"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nama_dibutuhkan_untuk_keperluan_identitas"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jenis hewan dapat diisi dengan kucing, anjing, kelinci, dan sebagainya"/>
     </LinearLayout>
 
     <LinearLayout
@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/kami_membutuhkan_nomor_handphone_yang_terhubung_ke_whatsapp_untuk_menghubungi_anda_dalam_hal_konfirmasi_dan_sebagainya"/>
+            android:text="Kami butuh kondisi kesehatan hewan anda agar memudahkan kami untuk merawatnya dengan baik"/>
     </LinearLayout>
 
     <LinearLayout
@@ -46,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/alamat_asli_anda_dibutuhkan_untuk_memastikan_bahwa_pesanan_anda_bukanlah_pesanan_fiktif"/>
+            android:text="Isilah jenis atau merek makanan hewan dengan yang biasa anda berikan"/>
     </LinearLayout>
 
     <LinearLayout
@@ -61,7 +61,37 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/kami_membutuhkan_alamat_penjemputan_barang_untuk_memindahkan_barang_anda_ke_gudang_kami"/>
+            android:text="Kami membutuhkan informasi vaksinasi hewan, jika peliharaan anda belum pernah diberi vaksin, isikan dengan -"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/help"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Silahkan isi jenis dan jumlah barang yang ingin dititipkan"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/help"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jika benda bersifat sepasang seperti sepatu, isi jumlah dengan jumlah pasang benda, jika sepasang (2 buah sepatu) maka isi jumlah dengan angka 1, jika dua pasang (4 buah sepatu) maka isikan 2, dan seterusnya"/>
     </LinearLayout>
 
 </LinearLayout>

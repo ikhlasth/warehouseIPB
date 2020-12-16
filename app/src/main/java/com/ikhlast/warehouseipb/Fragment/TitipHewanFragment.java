@@ -2,12 +2,14 @@ package com.ikhlast.warehouseipb.Fragment;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +30,7 @@ import com.ikhlast.warehouseipb.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TitipHewanFragment extends Fragment {
+public class TitipHewanFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private DatabaseReference database;
@@ -36,6 +38,7 @@ public class TitipHewanFragment extends Fragment {
     Sessions sessions;
     String nick;
     private Button titip;
+    private EditText etJenis, etPenyakit, etMakanan, etVaksin, etNote;
     private ProgressDialog loading;
 
     public TitipHewanFragment() {
@@ -61,6 +64,56 @@ public class TitipHewanFragment extends Fragment {
         user = mAuth.getCurrentUser();
         nick = user.getEmail().replace("@whipb.com","");
 
+        //cast
+        etJenis = view.findViewById(R.id.titipHewan_et_jenis_hewan);
+        etPenyakit = view.findViewById(R.id.titipHewan_et_penyakit);
+        etMakanan = view.findViewById(R.id.titipHewan_et_jenisMerek);
+        etVaksin = view.findViewById(R.id.titipHewan_et_vaksin);
+        etNote = view.findViewById(R.id.titipHewan_add_note);
+        titip = view.findViewById(R.id.titipHewan_titipnow);
+
+        titip.setOnClickListener(this);
+
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.titipHewan_titipnow:
+                String s1 = etJenis.getText().toString();
+                String s2 = etPenyakit.getText().toString();
+                String s3 = etMakanan.getText().toString();
+                String s4 = etVaksin.getText().toString();
+                if (s1.equals("") && s2.equals("") && s3.equals("") && s4.equals("")) {
+                    alert = new AlertDialog.Builder(getContext());
+                    alert.setTitle("Eits").setMessage("Anda belum menambahkan apapun").setCancelable(true).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    }).create().show();
+                } else if (s1.equals("")){
+                    etJenis.setError("Kolom harus diisi");
+                } else if (s2.equals("")){
+                    etPenyakit.setError("Kolom harus diisi");
+                } else if (s3.equals("")){
+                    etMakanan.setError("Kolom harus diisi");
+                } else if (s4.equals("")){
+                    etVaksin.setError("Isikan dengan - jika tidak ada");
+                } else {
+                    alert = new AlertDialog.Builder(getContext());
+                    alert
+                            .setTitle("Titipan anda")
+                            .setMessage("Anda menitipkan hewan " + s1 + " dengan penyakit " + s2 + ". Makanan yang biasa diberikan adalah " + s3 + ", dan pernah diberi vaksin " + s4 + ". Dengan catatan " + etNote.getText().toString() + ".")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            }).create().show();
+                    break;
+                }
+        }
+    }
 }
