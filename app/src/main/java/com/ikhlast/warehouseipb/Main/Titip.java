@@ -106,7 +106,7 @@ public class Titip extends AppCompatActivity implements View.OnClickListener {
                 hewan.setBackgroundResource(R.drawable.tombol2);
                 keduanya.setBackgroundResource(R.drawable.tombol2);
                 barang.setBackgroundResource(R.drawable.tombol);
-                barang.setTextColor(Color.parseColor("#e8d9d6"));
+                barang.setTextColor(Color.parseColor("#ffffff"));
                 hewan.setTextColor(Color.parseColor("#7e9f82"));
                 keduanya.setTextColor(Color.parseColor("#7e9f82"));
                 loadFrag(new TitipBarangFragment());
@@ -118,7 +118,7 @@ public class Titip extends AppCompatActivity implements View.OnClickListener {
                 barang.setBackgroundResource(R.drawable.tombol2);
                 keduanya.setBackgroundResource(R.drawable.tombol2);
                 hewan.setBackgroundResource(R.drawable.tombol);
-                hewan.setTextColor(Color.parseColor("#e8d9d6"));
+                hewan.setTextColor(Color.parseColor("#ffffff"));
                 keduanya.setTextColor(Color.parseColor("#7e9f82"));
                 barang.setTextColor(Color.parseColor("#7e9f82"));
                 loadFrag(new TitipHewanFragment());
@@ -130,7 +130,7 @@ public class Titip extends AppCompatActivity implements View.OnClickListener {
                 hewan.setBackgroundResource(R.drawable.tombol2);
                 barang.setBackgroundResource(R.drawable.tombol2);
                 keduanya.setBackgroundResource(R.drawable.tombol);
-                keduanya.setTextColor(Color.parseColor("#e8d9d6"));
+                keduanya.setTextColor(Color.parseColor("#ffffff"));
                 hewan.setTextColor(Color.parseColor("#7e9f82"));
                 barang.setTextColor(Color.parseColor("#7e9f82"));
                 loadFrag(new TitipKeduanyaFragment());

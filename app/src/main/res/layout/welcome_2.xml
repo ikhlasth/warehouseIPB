@@ -20,7 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/slide_2_title"
-            android:textColor="@color/baru_coklatgelapbanget"
+            android:textColor="@color/pastel_ijotua"
+            android:textAlignment="center"
             android:textSize="@dimen/slide_title"
             android:fontFamily="@font/sofia_pro_black_az"/>
 
@@ -32,7 +33,7 @@
             android:paddingRight="@dimen/desc_padding"
             android:text="@string/slide_2_desc"
             android:textAlignment="center"
-            android:textColor="@color/baru_coklatgelap"
+            android:textColor="@color/pastel_ijomuda"
             android:textSize="@dimen/slide_desc"
             android:fontFamily="@font/sofia_pro_light_az"/>
 

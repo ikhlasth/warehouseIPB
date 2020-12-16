@@ -87,7 +87,7 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
         stat = findViewById(R.id.profil_status);
 
         getStatusPenitipan();
-        greeting.setText("Hi, "+user);
+        greeting.setText("Hi, "+user+"!");
         loading = ProgressDialog.show(Profil.this,
                 null,
                 "Harap tunggu...",

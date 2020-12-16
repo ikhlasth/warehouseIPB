@@ -27,7 +27,7 @@
         android:alpha=".5"
         android:layout_above="@id/layoutDots"
         android:layout_marginBottom="-10dp"
-        android:background="@color/baru_coklatagakgelapbanget" />
+        android:background="@color/pastel_ijotua" />
 
     <Button
         android:id="@+id/btn_next"
@@ -37,7 +37,7 @@
         android:layout_alignParentEnd="true"
         android:background="@null"
         android:text="@string/next"
-        android:textColor="@color/baru_coklatagakgelapbanget"
+        android:textColor="@color/pastel_ijotua"
         android:fontFamily="@font/sofia_pro_black_az"/>
 
     <Button
@@ -48,7 +48,7 @@
         android:layout_alignParentStart="true"
         android:background="@null"
         android:text="@string/skip"
-        android:textColor="@color/baru_coklatagakgelapbanget"
+        android:textColor="@color/pastel_ijotua"
         android:fontFamily="@font/sofia_pro_black_az"/>
 
 </RelativeLayout>

@@ -124,6 +124,7 @@ public class Welcome extends AppCompatActivity {
     private void launchHomeScreen() {
         Pref.setFirstTimeLaunch(false);
         startActivity(new Intent(Welcome.this, Login.class));
+        overridePendingTransition(0,0);
         finish();
     }
 

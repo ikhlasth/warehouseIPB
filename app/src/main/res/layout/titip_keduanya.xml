@@ -1,6 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/keduanya_layouhewan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/titip_textinput1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/titipKeduanya_et_jenis_hewan"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Jenis hewan (kucing, anjing, dll)"
+                android:textColor="@color/tekslogindaftar"
+                android:inputType="text"
+                android:ems="15"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/titipKeduanya_et_penyakit"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Penyakit"
+                android:textColor="@color/tekslogindaftar"
+                android:inputType="text"
+                android:ems="15"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/titipKeduanya_et_jenisMerek"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Jenis atau merek makanan"
+                android:textColor="@color/tekslogindaftar"
+                android:inputType="text"
+                android:ems="15"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/titipKeduanya_et_vaksin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Vaksin yang pernah diberikan"
+                android:textColor="@color/tekslogindaftar"
+                android:inputType="text"
+                android:ems="15"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/edit"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tambahkan catatan khusus"
+                android:textColor="@color/pastel_ijomuda"
+                android:textSize="18sp"/>
+        </LinearLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/baru_putih"
+            app:cardCornerRadius="10dp"
+            android:elevation="5dp">
+
+            <EditText
+                android:id="@+id/titip_keduanya_add_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:inputType="text"
+                android:background="@color/transparan"/>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/keduanya_layouhewan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/titipKeduanya_tambah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="Tambah"
+                    android:drawableStart="@drawable/add"
+                    android:padding="10dp"
+                    android:textColor="@color/pastel_ijomuda"
+                    android:fontFamily="@font/sofia_pro_medium_az"
+                    android:background="@drawable/tombol2"/>
+            </RelativeLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp">
+                    <LinearLayout
+                        android:id="@+id/titipKeduanya_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"/>
+
+                    <Button
+                        android:id="@+id/titipKeduanya_titipnow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tombol"
+                        android:text="Titip"
+                        android:textColor="@color/baru_putih"
+                        android:fontFamily="@font/sofia_pro_black_az"/>
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+    </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
