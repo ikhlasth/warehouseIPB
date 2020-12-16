@@ -28,6 +28,7 @@ import com.ikhlast.warehouseipb.R;
 /**
  * A simple {@link Fragment} subclass.
  */
+//TODO BENERIN CAST kaya titip yang lain
 public class TitipKeduanyaFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
