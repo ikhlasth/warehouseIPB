@@ -33,10 +33,10 @@ import com.ikhlast.warehouseipb.R;
 public class TitipHewanFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private DatabaseReference database;
+    private DatabaseReference database, ph;
     AlertDialog.Builder alert;
     Sessions sessions;
-    String nick;
+    String nick, nohp;
     private Button titip;
     private EditText etJenis, etPenyakit, etMakanan, etVaksin, etNote;
     private ProgressDialog loading;
@@ -59,6 +59,7 @@ public class TitipHewanFragment extends Fragment implements View.OnClickListener
 
         alert = new AlertDialog.Builder(getContext());
         database = FirebaseDatabase.getInstance().getReference();
+        ph = database.child("List/Pesanan Masuk/Hewan");
         mAuth = FirebaseAuth.getInstance();
         sessions = new Sessions(getContext());
         user = mAuth.getCurrentUser();
@@ -73,7 +74,7 @@ public class TitipHewanFragment extends Fragment implements View.OnClickListener
         titip = view.findViewById(R.id.titipHewan_titipnow);
 
         titip.setOnClickListener(this);
-
+        getNoHP(user.getUid());
     }
 
     @Override
@@ -84,6 +85,10 @@ public class TitipHewanFragment extends Fragment implements View.OnClickListener
                 String s2 = etPenyakit.getText().toString();
                 String s3 = etMakanan.getText().toString();
                 String s4 = etVaksin.getText().toString();
+                String s5 = etNote.getText().toString();
+                if (s5.equals("")){
+                    s5 = "-";
+                }
                 if (s1.equals("") && s2.equals("") && s3.equals("") && s4.equals("")) {
                     alert = new AlertDialog.Builder(getContext());
                     alert.setTitle("Eits").setMessage("Anda belum menambahkan apapun").setCancelable(true).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -104,7 +109,7 @@ public class TitipHewanFragment extends Fragment implements View.OnClickListener
                     alert = new AlertDialog.Builder(getContext());
                     alert
                             .setTitle("Titipan anda")
-                            .setMessage("Anda menitipkan hewan " + s1 + " dengan penyakit " + s2 + ". Makanan yang biasa diberikan adalah " + s3 + ", dan pernah diberi vaksin " + s4 + ". Dengan catatan " + etNote.getText().toString() + ".")
+                            .setMessage("Anda menitipkan hewan " + s1 + " dengan penyakit " + s2 + ". Makanan yang biasa diberikan adalah " + s3 + ", dan pernah diberi vaksin " + s4 + ". Dengan catatan " + s5 + ".")
                             .setCancelable(false)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
@@ -112,8 +117,31 @@ public class TitipHewanFragment extends Fragment implements View.OnClickListener
                                     dialogInterface.cancel();
                                 }
                             }).create().show();
+                    submitform(user.getUid(), nohp, s1, s2, s3, s4, s5);
                     break;
                 }
         }
+    }
+    private void getNoHP(String uid){
+        database.child("user").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+               nohp =  snapshot.child("Nomor HP").getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void submitform(String uid, String nomorhp, String hewan, String penyakit, String makanan, String vaksin, String catatan){
+        ph.child("id").setValue(uid);
+        ph.child("id").child(uid).child("nomor hp").setValue(nomorhp);
+        ph.child("id").child(uid).child("hewan").setValue(hewan);
+        ph.child("id").child(uid).child("penyakit hewan").setValue(penyakit);
+        ph.child("id").child(uid).child("makanan hewan").setValue(makanan);
+        ph.child("id").child(uid).child("vaksin hewan").setValue(vaksin);
+        ph.child("id").child(uid).child("catatan khusus").setValue(catatan);
     }
 }

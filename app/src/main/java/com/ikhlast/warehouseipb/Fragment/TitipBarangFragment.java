@@ -38,10 +38,10 @@ import java.util.ArrayList;
 public class TitipBarangFragment extends Fragment implements View.OnClickListener{
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private DatabaseReference database;
+    private DatabaseReference database, pb;
     AlertDialog.Builder alert;
     Sessions sessions;
-    String nick;
+    String nick, nohp;
     private Button titip, tambahBarang, titipBarang, hapusBarang;
     EditText etJenisBarang, etJumlahBarang;
     LinearLayout containerTitip;
@@ -67,6 +67,7 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
 
         alert = new AlertDialog.Builder(getContext());
         database = FirebaseDatabase.getInstance().getReference();
+        pb = database.child("List/Pesanan Masuk/Barang");
         mAuth = FirebaseAuth.getInstance();
         sessions = new Sessions(getContext());
         user = mAuth.getCurrentUser();
@@ -82,7 +83,7 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
         tambahBarang.setOnClickListener(this);
         titipBarang.setOnClickListener(this);
 
-
+        getNoHP(user.getUid());
     }
 
     @Override
@@ -146,9 +147,26 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
                 et2.setError("Tidak boleh kosong");
                 break;
             }
+            pb.child("id").setValue(user.getUid());
+            pb.child("id").child(user.getUid()).child("Barang "+(i+1)).child("Nama Barang").setValue(tv1);
+            pb.child("id").child(user.getUid()).child("Barang "+(i+1)).child("Jumlah").setValue(tv2);
+            
             isibarang.add(tv1+" "+tv2);
             tex += tv1+tv2+"%%";
             Toast.makeText(getContext(), tex, Toast.LENGTH_SHORT).show();
         }
+    }
+    private void getNoHP(String uid){
+        database.child("user").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                nohp = snapshot.child("Nomor HP").getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
