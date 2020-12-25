@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +43,7 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
     AlertDialog.Builder alert;
     Sessions sessions;
     String nick, nohp;
+    long count;
     private Button titip, tambahBarang, titipBarang, hapusBarang;
     EditText etJenisBarang, etJumlahBarang;
     LinearLayout containerTitip;
@@ -83,7 +85,7 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
         tambahBarang.setOnClickListener(this);
         titipBarang.setOnClickListener(this);
 
-        getNoHP(user.getUid());
+//        getNoHP(user.getUid());
     }
 
     @Override
@@ -132,14 +134,13 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
     }
     private void listAll(){
         isibarang = new ArrayList<>();
-        String tex = "";
-        int childCount = containerTitip.getChildCount();
+        final int childCount = containerTitip.getChildCount();
         for(int i=0; i<childCount; i++){
             View thisChild = containerTitip.getChildAt(i);
             EditText et1 = thisChild.findViewById(R.id.titipBarang_entry_jenis);
             EditText et2 = thisChild.findViewById(R.id.titipBarang_entry_jumlah);
-            String tv1 = et1.getText().toString();
-            String tv2 = et2.getText().toString();
+            String tv1 = et1.getText().toString().trim();
+            String tv2 = et2.getText().toString().trim();
             if (tv1.equals("")){
                 et1.setError("Tidak boleh kosong");
                 break;
@@ -147,20 +148,73 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
                 et2.setError("Tidak boleh kosong");
                 break;
             }
-            pb.child("id").setValue(user.getUid());
-            pb.child("id").child(user.getUid()).child("Barang "+(i+1)).child("Nama Barang").setValue(tv1);
-            pb.child("id").child(user.getUid()).child("Barang "+(i+1)).child("Jumlah").setValue(tv2);
-            
             isibarang.add(tv1+" "+tv2);
-            tex += tv1+tv2+"%%";
-            Toast.makeText(getContext(), tex, Toast.LENGTH_SHORT).show();
+        }
+        if (isibarang.size() > 0) {
+
+            alert = new AlertDialog.Builder(getContext());
+            alert
+                    .setTitle("Konfirmasi penitipan")
+                    .setMessage("Anda akan menitipkan " + (String.valueOf(isibarang).replace("[", "").replace("]", "")))
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                                checkProceed();
+                        }
+                    }).setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            }).create().show();
         }
     }
-    private void getNoHP(String uid){
-        database.child("user").child(uid).addValueEventListener(new ValueEventListener() {
+//    private void getNoHP(String uid){
+//        database.child("user").child(uid).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                nohp = snapshot.child("Nomor HP").getValue(String.class);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
+
+    private void checkProceed(){
+        pb.child("id/"+ user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                nohp = snapshot.child("Nomor HP").getValue(String.class);
+                if (!snapshot.exists()){
+                    pb.child("id/"+user.getUid()+"/Barang 01").setValue(user.getUid());
+                }
+                for (int f = 0; f < isibarang.size(); f++) {
+                    String[] x = isibarang.get(f).split(" ");
+                    count = snapshot.getChildrenCount();
+                    long xf = f+count+1;
+                    if (xf < 10){
+                        pb.child("id").child(user.getUid()).child("Barang 0" + (xf)).child("Nama Barang").setValue(x[0]);
+                        pb.child("id").child(user.getUid()).child("Barang 0" + (xf)).child("Jumlah").setValue(x[1]);
+                    } else {
+                        pb.child("id").child(user.getUid()).child("Barang " + (xf)).child("Nama Barang").setValue(x[0]);
+                        pb.child("id").child(user.getUid()).child("Barang " + (xf)).child("Jumlah").setValue(x[1]);
+                    }
+                }
+                alert = new AlertDialog.Builder(getContext());
+                alert
+                        .setTitle("Sukses")
+                        .setMessage("Data berhasil dikirim. Pihak warehouseIPB akan menghubungi anda untuk proses selanjutnya")
+                        .setCancelable(true)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        }).create().show();
+
             }
 
             @Override
@@ -168,5 +222,6 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
 
             }
         });
+
     }
 }

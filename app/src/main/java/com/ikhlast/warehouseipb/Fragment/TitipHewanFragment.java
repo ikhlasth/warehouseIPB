@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,10 +34,11 @@ import com.ikhlast.warehouseipb.R;
 public class TitipHewanFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private DatabaseReference database, ph;
+    private DatabaseReference database, ph, dbn;
     AlertDialog.Builder alert;
     Sessions sessions;
     String nick, nohp;
+    long count;
     private Button titip;
     private EditText etJenis, etPenyakit, etMakanan, etVaksin, etNote;
     private ProgressDialog loading;
@@ -74,18 +76,18 @@ public class TitipHewanFragment extends Fragment implements View.OnClickListener
         titip = view.findViewById(R.id.titipHewan_titipnow);
 
         titip.setOnClickListener(this);
-        getNoHP(user.getUid());
+//        getNoHP(user.getUid());
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.titipHewan_titipnow:
-                String s1 = etJenis.getText().toString();
-                String s2 = etPenyakit.getText().toString();
-                String s3 = etMakanan.getText().toString();
-                String s4 = etVaksin.getText().toString();
-                String s5 = etNote.getText().toString();
+                final String s1 = etJenis.getText().toString().trim();
+                final String s2 = etPenyakit.getText().toString().trim();
+                final String s3 = etMakanan.getText().toString().trim();
+                final String s4 = etVaksin.getText().toString().trim();
+                String s5 = etNote.getText().toString().trim();
                 if (s5.equals("")){
                     s5 = "-";
                 }
@@ -107,6 +109,7 @@ public class TitipHewanFragment extends Fragment implements View.OnClickListener
                     etVaksin.setError("Isikan dengan - jika tidak ada");
                 } else {
                     alert = new AlertDialog.Builder(getContext());
+                    final String finalS = s5;
                     alert
                             .setTitle("Titipan anda")
                             .setMessage("Anda menitipkan hewan " + s1 + " dengan penyakit " + s2 + ". Makanan yang biasa diberikan adalah " + s3 + ", dan pernah diberi vaksin " + s4 + ". Dengan catatan " + s5 + ".")
@@ -114,19 +117,61 @@ public class TitipHewanFragment extends Fragment implements View.OnClickListener
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.cancel();
+                                    submitform(user.getUid(), s1, s2, s3, s4, finalS);
                                 }
-                            }).create().show();
-                    submitform(user.getUid(), nohp, s1, s2, s3, s4, s5);
+                            }).setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    }).create().show();
                     break;
                 }
         }
     }
-    private void getNoHP(String uid){
-        database.child("user").child(uid).addValueEventListener(new ValueEventListener() {
+//    private void getNoHP(String uid){
+//        database.child("user").child(uid).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//               nohp = snapshot.child("Nomor HP").getValue(String.class);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
+    private void submitform(final String uid, final String hewan, final String penyakit, final String makanan, final String vaksin, final String catatan){
+        ph.child("id/"+uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-               nohp =  snapshot.child("Nomor HP").getValue(String.class);
+                if (!snapshot.exists()) {
+                    ph.child("id/"+uid+"/Hewan 01").setValue(uid);
+                }
+                count = snapshot.getChildrenCount();
+                long s = count+1;
+                if (s < 10) {
+                    dbn = FirebaseDatabase.getInstance().getReference("List/Pesanan Masuk/Hewan/id/"+uid+"/Hewan 0"+s);
+                } else {
+                    dbn = FirebaseDatabase.getInstance().getReference("List/Pesanan Masuk/Hewan/id/"+uid+"/Hewan "+s);
+                }
+                dbn.child("hewan").setValue(hewan);
+                dbn.child("penyakit hewan").setValue(penyakit);
+                dbn.child("makanan hewan").setValue(makanan);
+                dbn.child("vaksin hewan").setValue(vaksin);
+                dbn.child("catatan khusus").setValue(catatan);
+                alert = new AlertDialog.Builder(getContext());
+                alert
+                        .setTitle("Sukses")
+                        .setMessage("Data berhasil dikirim. Pihak warehouseIPB akan menghubungi anda untuk proses selanjutnya")
+                        .setCancelable(true)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        }).create().show();
             }
 
             @Override
@@ -134,14 +179,7 @@ public class TitipHewanFragment extends Fragment implements View.OnClickListener
 
             }
         });
-    }
-    private void submitform(String uid, String nomorhp, String hewan, String penyakit, String makanan, String vaksin, String catatan){
-        ph.child("id").setValue(uid);
-        ph.child("id").child(uid).child("nomor hp").setValue(nomorhp);
-        ph.child("id").child(uid).child("hewan").setValue(hewan);
-        ph.child("id").child(uid).child("penyakit hewan").setValue(penyakit);
-        ph.child("id").child(uid).child("makanan hewan").setValue(makanan);
-        ph.child("id").child(uid).child("vaksin hewan").setValue(vaksin);
-        ph.child("id").child(uid).child("catatan khusus").setValue(catatan);
+
+
     }
 }

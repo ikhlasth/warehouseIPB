@@ -40,10 +40,11 @@ import java.util.ArrayList;
 public class TitipKeduanyaFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private DatabaseReference database;
+    private DatabaseReference database, pbh, dbb;
     AlertDialog.Builder alert;
     Sessions sessions;
-    String nick;
+    String nick, nohp;
+    long cb, ch, sb, sh;
     private Button titip, tambah, hapus;
     EditText etJenisHewan, etPenyakit, etJenisMakanan, etVaksin, etNote, etJenisBarang, etJumlahBarang;
     LinearLayout container;
@@ -68,6 +69,7 @@ public class TitipKeduanyaFragment extends Fragment implements View.OnClickListe
 
         alert = new AlertDialog.Builder(getContext());
         database = FirebaseDatabase.getInstance().getReference();
+        pbh = FirebaseDatabase.getInstance().getReference("List/Pesanan Masuk/Keduanya");
         mAuth = FirebaseAuth.getInstance();
         sessions = new Sessions(getContext());
         user = mAuth.getCurrentUser();
@@ -88,6 +90,8 @@ public class TitipKeduanyaFragment extends Fragment implements View.OnClickListe
         //listener
         tambah.setOnClickListener(this);
         titip.setOnClickListener(this);
+
+//        getnoHP(user.getUid());
     }
 
     @Override
@@ -119,51 +123,166 @@ public class TitipKeduanyaFragment extends Fragment implements View.OnClickListe
                 container.addView(addv);
                 break;
             case R.id.titipKeduanya_titipnow:
-                if (container.getChildCount() > 0){
-                    list();
-                } else {
-                    alert = new AlertDialog.Builder(getContext());
-                    alert.setTitle("Eits").setMessage("Anda belum menambahkan apapun").setCancelable(true).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    }).create().show();
-                }
+                list();
                 break;
         }
     }
+
     private void list(){
         isi = new ArrayList<>();
-        String txt = "";
-        int count = container.getChildCount();
-        for (int i = 0; i<count; i++){
-            View child = container.getChildAt(i);
-            EditText et1 = child.findViewById(R.id.titipBarang_entry_jenis);
-            EditText et2 = child.findViewById(R.id.titipBarang_entry_jumlah);
-            String t1 = et1.getText().toString();
-            String t2 = et2.getText().toString();
-            if (t1.equals("")){
-                et1.setError("Tidak boleh kosong");
-                break;
-            } else if (t2.equals("")){
-                et2.setError("Tidak boleh kosong");
-                break;
-            }
-            isi.add(t1+" "+t2);
-            txt += t1+t2+"%%";
+        final String s1 = etJenisHewan.getText().toString().trim();
+        final String s2 = etPenyakit.getText().toString().trim();
+        final String s3 = etJenisMakanan.getText().toString().trim();
+        final String s4 = etVaksin.getText().toString().trim();
+        String s5 = etNote.getText().toString().trim();
+        if (s5.equals("")){
+            s5 = "-";
         }
-        //TODO: ALERT MASIH ISI BARANG DOANG a.k.a belom nyambung ke database
-        alert = new AlertDialog.Builder(getContext());
-        alert
-                .setTitle("Titipan")
-                .setMessage("Barang yang ingin anda titip adalah "+isi)
-                .setCancelable(true)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
+        if (s1.equals("") && s2.equals("") && s3.equals("") && s4.equals("")) {
+            alert = new AlertDialog.Builder(getContext());
+            alert.setTitle("Eits").setMessage("Anda belum menambahkan hewan").setCancelable(true).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            }).create().show();
+        } else if (s1.equals("")){
+            etJenisHewan.setError("Kolom harus diisi");
+        } else if (s2.equals("")){
+            etPenyakit.setError("Kolom harus diisi");
+        } else if (s3.equals("")){
+            etJenisMakanan.setError("Kolom harus diisi");
+        } else if (s4.equals("")){
+            etVaksin.setError("Isikan dengan - jika tidak ada");
+        } else {
+            int count = container.getChildCount();
+            if (count == 0) {
+                alert = new AlertDialog.Builder(getContext());
+                alert
+                        .setTitle("Eits")
+                        .setMessage("Anda belum mengisi barang")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        })
+                        .setCancelable(true)
+                        .create().show();
+            } else {
+                for (int i = 0; i < count; i++) {
+                    View child = container.getChildAt(i);
+                    EditText et1 = child.findViewById(R.id.titipBarang_entry_jenis);
+                    EditText et2 = child.findViewById(R.id.titipBarang_entry_jumlah);
+                    String t1 = et1.getText().toString().trim();
+                    String t2 = et2.getText().toString().trim();
+                    if (t1.equals("")) {
+                        et1.setError("Tidak boleh kosong");
+                        break;
+                    } else if (t2.equals("")) {
+                        et2.setError("Tidak boleh kosong");
+                        break;
                     }
-                }).create().show();
+                    isi.add(t1 + " " + t2);
+                }
+            }
+        }
+
+        if (isi.size()>0){
+            alert = new AlertDialog.Builder(getContext());
+            final String finalS = s5;
+            alert
+                    .setTitle("Titipan")
+                    .setMessage("Barang yang ingin anda titip adalah "
+                            + String.valueOf(isi).replace("[", "")
+                            .replace("]", "")
+                            +" Dan hewan "+s1+" dengan penyakit "
+                            + s2 + ". Makanan yang biasa diberikan adalah "
+                            + s3 + ", dan pernah diberi vaksin " + s4
+                            + ". Dengan catatan " + s5 + ".")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            proceed(user.getUid(), s1,s2,s3,s4, finalS);
+                        }
+                    }).setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            }).create().show();
+        }
+
+    }
+//    public void getnoHP(String uid){
+//        database.child("user").child(uid).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                nohp = snapshot.child("Nomor HP").getValue(String.class);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
+    private void proceed(final String uid, final String hewan, final String penyakit, final String makanan, final String vaksin, final String catatan){
+        pbh.child("id/"+user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()){
+                    pbh.child("id/"+uid+"/Barang").setValue(uid);
+                } else if (!snapshot.child("Barang").exists()){
+                    pbh.child("id/"+uid+"/Barang").setValue("null");
+                } else if (!snapshot.child("Hewan").exists()){
+                    pbh.child("id/"+uid+"/Hewan").setValue("null");
+                }
+                //barang
+                for (int b = 0; b < isi.size(); b++){
+                    String[] x = isi.get(b).split(" ");
+                    cb = snapshot.child("Barang").getChildrenCount();
+                    sb = cb+b+1;
+                    if (sb<10){
+                        pbh.child("id/"+uid+"/Barang/Barang 0"+sb+"/Nama Barang").setValue(x[0]);
+                        pbh.child("id/"+uid+"/Barang/Barang 0"+sb+"/Jumlah").setValue(x[1]);
+                    } else {
+                        pbh.child("id/"+uid+"/Barang/Barang "+sb+"/Nama Barang").setValue(x[0]);
+                        pbh.child("id/"+uid+"/Barang/Barang "+sb+"/Jumlah").setValue(x[1]);
+                    }
+                }
+
+                //hewan
+                ch = snapshot.child("Hewan").getChildrenCount();
+                sh = ch+1;
+                if (sh < 10){
+                    dbb = FirebaseDatabase.getInstance().getReference("List/Pesanan Masuk/Keduanya/id/"+uid+"/Hewan/Hewan 0"+sh);
+                } else {
+                    dbb = FirebaseDatabase.getInstance().getReference("List/Pesanan Masuk/Keduanya/id/"+uid+"/Hewan/Hewan "+sh);
+                }
+                dbb.child("hewan").setValue(hewan);
+                dbb.child("penyakit hewan").setValue(penyakit);
+                dbb.child("makanan hewan").setValue(makanan);
+                dbb.child("vaksin hewan").setValue(vaksin);
+                dbb.child("catatan khusus").setValue(catatan);
+                alert = new AlertDialog.Builder(getContext());
+                alert
+                        .setTitle("Sukses")
+                        .setMessage("Data berhasil dikirim. Pihak warehouseIPB akan menghubungi anda untuk proses selanjutnya")
+                        .setCancelable(true)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        }).create().show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
