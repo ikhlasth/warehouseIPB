@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.ikhlast.warehouseipb.Main.Admin;
 import com.ikhlast.warehouseipb.Main.Home;
 import com.ikhlast.warehouseipb.R;
 
@@ -90,12 +91,19 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener {
                                 Toast.makeText(Daftar.this, "Authentication success.",
                                         Toast.LENGTH_SHORT).show();
 
-                                startActivity(new Intent(Daftar.this, Home.class));
-                                overridePendingTransition(0, 0);
-                                username.setText("");
-                                password.setText("");
-                                password2.setText("");
-
+                                if (usr.equals("adminwhipb")){
+                                    startActivity(new Intent(Daftar.this, Admin.class));
+                                    overridePendingTransition(0, 0);
+                                    username.setText("");
+                                    password.setText("");
+                                    password2.setText("");
+                                } else {
+                                    startActivity(new Intent(Daftar.this, Home.class));
+                                    overridePendingTransition(0, 0);
+                                    username.setText("");
+                                    password.setText("");
+                                    password2.setText("");
+                                }
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Toast.makeText(Daftar.this, "Authentication failed.",

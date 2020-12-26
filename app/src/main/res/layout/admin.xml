@@ -8,66 +8,51 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".Fragment.HomeFragment">
+    tools:context=".Fragment.HomeFragment"
+    tools:showIn="@layout/admin">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/homeadmin_card1"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager_admin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="55dp"/>
+    <LinearLayout
+        android:id="@+id/admin_linearbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/baru_pink"
-        app:cardCornerRadius="20dp"
-        android:layout_margin="10dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/homeadmin_text1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Menunggu Konfirmasi Whatsapp"
-            android:paddingVertical="5dp"
-            android:textSize="18sp"
-            android:textColor="@color/baru_hitam"
-            android:fontFamily="@font/sofia_pro_black_az"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/homeadmin_rv1"
-            android:layout_below="@id/homeadmin_text1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:visibility="gone"/>
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
-        android:layout_below="@id/homeadmin_card1"
+        android:layout_alignParentTop="true"
+        android:weightSum="1">
+    <Button
+        android:id="@+id/admin_btn_menunggu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:background="@null"
+        android:text="Konfirmasi"
+        android:fontFamily="@font/sofia_pro_black_az"/>
+    <Button
+        android:id="@+id/admin_btn_onGoing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:background="@null"
+        android:text="sedang berjalan"
+        android:fontFamily="@font/sofia_pro_black_az"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha=".5"
+        android:layout_below="@id/admin_linearbutton"
+        android:background="@color/baru_abu"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/admin_recycler_konfirmasi_sementara"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/baru_pink"
-        app:cardCornerRadius="20dp"
-        android:layout_marginHorizontal="10dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/homeadmin_text2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Pengembalian"
-                android:paddingVertical="5dp"
-                android:textSize="18sp"
-                android:textColor="@color/baru_hitam"
-                android:fontFamily="@font/sofia_pro_black_az"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/homeadmin_rv2"
-                android:layout_below="@id/homeadmin_text2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:visibility="gone"/>
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="10dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

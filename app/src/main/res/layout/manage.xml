@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baru_putih"
+    android:layout_margin="20dp">
+
+    <EditText
+        android:id="@+id/manage_kapasitas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tombol2"
+        android:hint="kapasitas gudang"
+        android:layout_margin="5dp"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="10dp"/>
+    <EditText
+        android:id="@+id/manage_lainnya"
+        android:layout_below="@id/manage_kapasitas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tombol2"
+        android:hint="other"
+        android:layout_margin="5dp"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="10dp"/>
+
+</RelativeLayout>
