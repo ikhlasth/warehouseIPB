@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -63,9 +64,11 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
         bnv.getMenu().getItem(2).setChecked(true);
         bnv.setOnNavigationItemSelectedListener(this);
         edit = findViewById(R.id.profil_tombolEditProfil);
+        edit.setBackgroundColor(Color.parseColor("#FFFFFF"));
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                edit.setBackgroundColor(Color.parseColor("#7e9f82"));
                 startActivity(new Intent(Profil.this, Biodata.class));
                 overridePendingTransition(0,0);
             }

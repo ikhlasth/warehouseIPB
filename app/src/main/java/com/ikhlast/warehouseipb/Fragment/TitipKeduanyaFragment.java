@@ -245,11 +245,11 @@ public class TitipKeduanyaFragment extends Fragment implements View.OnClickListe
                     cb = snapshot.child("Barang").getChildrenCount();
                     sb = cb+b+1;
                     if (sb<10){
-                        pbh.child("id/"+uid+"/Barang/Barang 0"+sb+"/Nama Barang").setValue(x[0]);
-                        pbh.child("id/"+uid+"/Barang/Barang 0"+sb+"/Jumlah").setValue(x[1]);
+                        pbh.child("id/"+uid+"/Barang/Barang 0"+sb+"/nama").setValue(x[0]);
+                        pbh.child("id/"+uid+"/Barang/Barang 0"+sb+"/jumlah").setValue(x[1]);
                     } else {
-                        pbh.child("id/"+uid+"/Barang/Barang "+sb+"/Nama Barang").setValue(x[0]);
-                        pbh.child("id/"+uid+"/Barang/Barang "+sb+"/Jumlah").setValue(x[1]);
+                        pbh.child("id/"+uid+"/Barang/Barang "+sb+"/nama").setValue(x[0]);
+                        pbh.child("id/"+uid+"/Barang/Barang "+sb+"/jumlah").setValue(x[1]);
                     }
                 }
 
@@ -261,11 +261,11 @@ public class TitipKeduanyaFragment extends Fragment implements View.OnClickListe
                 } else {
                     dbb = FirebaseDatabase.getInstance().getReference("List/Pesanan Masuk/Keduanya/id/"+uid+"/Hewan/Hewan "+sh);
                 }
-                dbb.child("hewan").setValue(hewan);
-                dbb.child("penyakit hewan").setValue(penyakit);
-                dbb.child("makanan hewan").setValue(makanan);
-                dbb.child("vaksin hewan").setValue(vaksin);
-                dbb.child("catatan khusus").setValue(catatan);
+                dbb.child("jenis").setValue(hewan);
+                dbb.child("penyakit").setValue(penyakit);
+                dbb.child("makanan").setValue(makanan);
+                dbb.child("vaksin").setValue(vaksin);
+                dbb.child("catatan").setValue(catatan);
                 alert = new AlertDialog.Builder(getContext());
                 alert
                         .setTitle("Sukses")

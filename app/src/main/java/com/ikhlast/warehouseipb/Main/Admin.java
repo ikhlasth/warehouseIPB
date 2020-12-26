@@ -11,6 +11,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -39,7 +40,7 @@ import com.ikhlast.warehouseipb.R;
 import java.util.ArrayList;
 
 public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListener, BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-    private DatabaseReference db, dbStat;
+    private DatabaseReference db;
     private RecyclerView rv, rv1, rv2;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lm1, lm2;
@@ -48,8 +49,7 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
     private ProgressDialog loading;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-    private String user, nama, statusPenitipan, berlakuSampai;
-    private EditText etKapasitas, etLainnya;
+    private String user;
 
     private Button confirm, onProgress;
 
@@ -61,7 +61,7 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
     private viewAdapter vpAdapter;
     private int[] layouts;
     private LinearLayout lb;
-    private View addv;
+    private static final String CODE = "CODE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +84,6 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
         confirm.setTextColor(Color.parseColor("#7e9f82"));
         confirm.setOnClickListener(this);
         onProgress.setOnClickListener(this);
-        etKapasitas = findViewById(R.id.manage_kapasitas);
-        etLainnya = findViewById(R.id.manage_lainnya);
 
         viewPager = findViewById(R.id.view_pager_admin);
         layouts = new int[]{
@@ -153,15 +151,29 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
                 "Harap tunggu...",
                 true,
                 false);
-        db.child("List/Pesanan Masuk/Barang/id").addValueEventListener(new ValueEventListener() {
+            db.child("List/Pesanan Masuk").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 daftarKonfirmasi = new ArrayList<>();
-                for (DataSnapshot note : snapshot.getChildren()) {
-//                        ModelPaket barang = note.getValue(ModelPaket.class);
+                for (DataSnapshot note : snapshot.child("Barang/id").getChildren()) {
+    //                        ModelPaket barang = note.getValue(ModelPaket.class);
                     namas nama = note.getValue(namas.class);
                     nama.setUser(note.getKey());
                     daftarKonfirmasi.add(nama);
+                }
+                for (DataSnapshot n : snapshot.child("Hewan/id").getChildren()) {
+                    namas na = n.getValue(namas.class);
+                    na.setUser(n.getKey());
+                    if (!(daftarKonfirmasi.contains(na))) {
+                        daftarKonfirmasi.add(na);
+                    }
+                }
+                for (DataSnapshot k : snapshot.child("Keduanya/id").getChildren()){
+                    namas nk = k.getValue(namas.class);
+                    nk.setUser(k.getKey());
+                    if (!daftarKonfirmasi.contains(nk)){
+                        daftarKonfirmasi.add(nk);
+                    }
                 }
                 adapter = new AdapterAdmin1(daftarKonfirmasi, Admin.this);
                 rv.setAdapter(adapter);
@@ -169,29 +181,42 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
 
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                loading.dismiss();
-            }
-        });
-    }
-
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+            loading.dismiss();
+        }
+    });
+}
     private void getConf(){
         loading = ProgressDialog.show(Admin.this,
                 null,
                 "Harap tunggu...",
                 true,
                 false);
-        db.child("List/Pesanan Masuk/Barang/id").addValueEventListener(new ValueEventListener() {
+        db.child("List/Pesanan Masuk").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 daftarKonfirmasi = new ArrayList<>();
-                for (DataSnapshot note : snapshot.getChildren()) {
+                for (DataSnapshot note : snapshot.child("Barang/id").getChildren()) {
 //                        ModelPaket barang = note.getValue(ModelPaket.class);
                         namas nama = note.getValue(namas.class);
                         nama.setUser(note.getKey());
                         daftarKonfirmasi.add(nama);
                 }
+                for (DataSnapshot n : snapshot.child("Hewan/id").getChildren()) {
+                    namas na = n.getValue(namas.class);
+                    na.setUser(n.getKey());
+                    if (!daftarKonfirmasi.contains(na)) {
+                        daftarKonfirmasi.add(na);
+                    }
+                }
+                    for (DataSnapshot k : snapshot.child("Keduanya/id").getChildren()){
+                        namas nk = k.getValue(namas.class);
+                        nk.setUser(k.getKey());
+                        if (!daftarKonfirmasi.contains(nk)){
+                            daftarKonfirmasi.add(nk);
+                        }
+                    }
                 adapter = new AdapterAdmin1(daftarKonfirmasi, Admin.this);
                 rv1.setAdapter(adapter);
                 loading.dismiss();
@@ -210,7 +235,7 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
                 "Harap tunggu...",
                 true,
                 false);
-        db.child("List/Pesanan Masuk/Hewan").addValueEventListener(new ValueEventListener() {
+        db.child("List/Pesanan Masuk/Hewan/id").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 daftarBerjalan = new ArrayList<>();
@@ -253,7 +278,11 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
     @Override
     public void onDataClick(namas barang, int position) {
         if (db != null){
-            Toast.makeText(Admin.this, "Anda mengklik "+barang, Toast.LENGTH_LONG).show();
+//            Toast.makeText(Admin.this, "Anda mengklik "+barang, Toast.LENGTH_LONG).show();
+            Intent i = new Intent(Admin.this, Details.class);
+            i.putExtra(CODE, barang.getUser());
+            startActivity(i);
+            overridePendingTransition(0,0);
         }
     }
 

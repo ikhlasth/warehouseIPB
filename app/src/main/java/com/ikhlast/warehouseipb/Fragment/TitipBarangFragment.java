@@ -196,11 +196,11 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
                     count = snapshot.getChildrenCount();
                     long xf = f+count+1;
                     if (xf < 10){
-                        pb.child("id").child(user.getUid()).child("Barang 0" + (xf)).child("Nama Barang").setValue(x[0]);
-                        pb.child("id").child(user.getUid()).child("Barang 0" + (xf)).child("Jumlah").setValue(x[1]);
+                        pb.child("id").child(user.getUid()).child("Barang 0" + (xf)).child("nama").setValue(x[0]);
+                        pb.child("id").child(user.getUid()).child("Barang 0" + (xf)).child("jumlah").setValue(x[1]);
                     } else {
-                        pb.child("id").child(user.getUid()).child("Barang " + (xf)).child("Nama Barang").setValue(x[0]);
-                        pb.child("id").child(user.getUid()).child("Barang " + (xf)).child("Jumlah").setValue(x[1]);
+                        pb.child("id").child(user.getUid()).child("Barang " + (xf)).child("nama").setValue(x[0]);
+                        pb.child("id").child(user.getUid()).child("Barang " + (xf)).child("jumlah").setValue(x[1]);
                     }
                 }
                 alert = new AlertDialog.Builder(getContext());

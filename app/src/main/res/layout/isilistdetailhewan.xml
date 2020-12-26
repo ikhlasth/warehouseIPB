@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/isilist_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:backgroundTint="@null"
+    app:cardCornerRadius="10dp"
+    android:elevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/isilist_jenishewan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Jenis: Kucing"
+                android:textColor="@color/pastel_ijomuda"
+                android:textSize="18sp"
+                android:fontFamily="@font/sofia_pro_black_az"/>
+
+            <TextView
+                android:id="@+id/isilist_makananhewan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Makanan: ori cat"
+                android:textColor="@color/pastel_ijomuda"
+                android:fontFamily="@font/sofia_pro_medium_az"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:id="@+id/isilist_penyakithewan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Penyakit: kutuan"
+                android:textColor="@color/pastel_ijomuda"
+                android:fontFamily="@font/sofia_pro_medium_az"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:id="@+id/isilist_vaksinhewan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Vaksin: covid-19 immunity"
+                android:textColor="@color/pastel_ijomuda"
+                android:fontFamily="@font/sofia_pro_medium_az"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:id="@+id/isilist_catatan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Catatan khusus: doyan sambel tomat"
+                android:textColor="@color/pastel_ijomuda"
+                android:fontFamily="@font/sofia_pro_medium_az"
+                android:textSize="17sp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

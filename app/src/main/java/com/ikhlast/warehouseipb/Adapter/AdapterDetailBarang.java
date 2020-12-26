@@ -10,17 +10,18 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.ikhlast.warehouseipb.Main.Admin;
-import com.ikhlast.warehouseipb.Models.ModelPaket;
-import com.ikhlast.warehouseipb.Models.namas;
+import com.ikhlast.warehouseipb.Main.Details;
+import com.ikhlast.warehouseipb.Main.Promo;
+import com.ikhlast.warehouseipb.Models.Barang;
 import com.ikhlast.warehouseipb.R;
 
 import java.util.ArrayList;
 
-public class AdapterAdmin1 extends RecyclerView.Adapter<AdapterAdmin1.ViewHolder> {
-    private ArrayList<namas> namaa;
+public class AdapterDetailBarang extends RecyclerView.Adapter<AdapterDetailBarang.ViewHolder> {
+    private ArrayList<Barang> daftarBarang;
     private Context context;
 
     private FirebaseUser mUser;
@@ -28,20 +29,21 @@ public class AdapterAdmin1 extends RecyclerView.Adapter<AdapterAdmin1.ViewHolder
     private DataListener listener;
     private String user;
 
-    public AdapterAdmin1(ArrayList<namas> nama, Context ctx) {
-        namaa = nama;
+    public AdapterDetailBarang(ArrayList<Barang> barangs, Context ctx) {
+        daftarBarang = barangs;
         context = ctx;
-        listener = (Admin)ctx;
+        listener = (Details)ctx;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView fid;
+        TextView nama, jumlah;
         CardView cv;
 
         ViewHolder(View v){
             super(v);
-            fid = v.findViewById(R.id.isilist_user);
-            cv = v.findViewById(R.id.isilistadmin_cardview);
+            nama = v.findViewById(R.id.isilist_namabarang);
+            jumlah = v.findViewById(R.id.isilist_jumlahbarang);
+            cv = v.findViewById(R.id.isilist_cardview);
         }
     }
 
@@ -50,31 +52,33 @@ public class AdapterAdmin1 extends RecyclerView.Adapter<AdapterAdmin1.ViewHolder
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         user = mUser.getEmail().replace("@whipb.com", "");
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.isilistadmin, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.isilistdetailbarang, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        final String f = namaa.get(position).getUser();
+        final String n = daftarBarang.get(position).getNama();
+        final String j = daftarBarang.get(position).getJumlah();
 
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onDataClick(namaa.get(position), position);
+                listener.onBarangClick(daftarBarang.get(position), position);
             }
         });
 
-        holder.fid.setText("FID: "+f);
+        holder.nama.setText("Barang: "+n);
+        holder.jumlah.setText("Jumlah: "+j);
     }
 
     @Override
     public int getItemCount() {
-        return namaa.size();
+        return daftarBarang.size();
     }
 
     public interface DataListener{
-        void onDataClick(namas barang, int position);
+        void onBarangClick(Barang barang, int position);
     }
 }

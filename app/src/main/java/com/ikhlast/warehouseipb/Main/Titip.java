@@ -37,7 +37,6 @@ import com.ikhlast.warehouseipb.Fragment.TitipHewanFragment;
 import com.ikhlast.warehouseipb.Fragment.TitipKeduanyaFragment;
 import com.ikhlast.warehouseipb.R;
 
-//TODO UPDATE LAYOUT, FAB TITIP BARANG DAN KEDUANYA
 public class Titip extends AppCompatActivity implements View.OnClickListener {
     DatabaseReference db;
     StorageReference dbStorage;

@@ -156,11 +156,11 @@ public class TitipHewanFragment extends Fragment implements View.OnClickListener
                 } else {
                     dbn = FirebaseDatabase.getInstance().getReference("List/Pesanan Masuk/Hewan/id/"+uid+"/Hewan "+s);
                 }
-                dbn.child("hewan").setValue(hewan);
-                dbn.child("penyakit hewan").setValue(penyakit);
-                dbn.child("makanan hewan").setValue(makanan);
-                dbn.child("vaksin hewan").setValue(vaksin);
-                dbn.child("catatan khusus").setValue(catatan);
+                dbn.child("jenis").setValue(hewan);
+                dbn.child("penyakit").setValue(penyakit);
+                dbn.child("makanan").setValue(makanan);
+                dbn.child("vaksin").setValue(vaksin);
+                dbn.child("catatan").setValue(catatan);
                 alert = new AlertDialog.Builder(getContext());
                 alert
                         .setTitle("Sukses")

@@ -120,7 +120,7 @@
             android:layout_marginTop="8dp"
             android:max="100"
             android:progress="0"
-            android:progressBackgroundTint="@color/baru_coklatagakgelapbanget"
+            android:progressBackgroundTint="@color/pastel_ijomuda"
             android:visibility="gone" />
 
     </LinearLayout>

@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -95,6 +96,26 @@ public class Promo extends AppCompatActivity implements AdapterPromo.DataListene
 
                 System.out.println(error.getDetails()+" "+error.getMessage());
                 loading.dismiss();
+            }
+        });
+
+        check();
+    }
+
+    private void check(){
+        db.child("user/"+mUser.getUid()+"/Foto KTP").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()){
+                    rv.setVisibility(View.GONE);
+                } else {
+                    rv.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
