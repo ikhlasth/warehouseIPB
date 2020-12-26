@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -67,6 +68,7 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin);
 
+        sessions = new Sessions(getApplicationContext());
         db = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -303,5 +305,33 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
             View v = (View) object;
             container.removeView(v);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        logout();
+    }
+    public void logout(){
+        alert = new AlertDialog.Builder(this);
+        alert
+                .setTitle("Keluar")
+                .setMessage("Apakah anda ingin Keluar?")
+                .setCancelable(false)
+                .setPositiveButton("Keluar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        db.child("sedangAktif").child(user).removeValue();
+                        sessions.logoutUser();
+                        mAuth.signOut();
+                        finish();
+                        overridePendingTransition(0,0);
+                    }
+                }).setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        }).create().show();
     }
 }
