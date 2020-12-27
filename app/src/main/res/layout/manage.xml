@@ -3,14 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/baru_putih"
-    android:layout_margin="20dp">
+    android:padding="50dp">
 
+    <TextView
+        android:id="@+id/manage_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Edit data gudang"
+        android:fontFamily="@font/sofia_pro_black_az"
+        android:textSize="20sp"
+        android:textColor="@color/pastel_ijomuda"/>
     <EditText
         android:id="@+id/manage_kapasitas"
+        android:layout_below="@id/manage_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/tombol2"
         android:hint="kapasitas gudang"
+        android:inputType="number"
         android:layout_margin="5dp"
         android:paddingVertical="5dp"
         android:paddingHorizontal="10dp"/>
@@ -20,9 +31,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/tombol2"
-        android:hint="other"
+        android:hint="lainnya"
         android:layout_margin="5dp"
         android:paddingVertical="5dp"
         android:paddingHorizontal="10dp"/>
+    <Button
+        android:id="@+id/manage_btKirim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tombol"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:text="Kirim"
+        android:textColor="@color/baru_putih"
+        android:fontFamily="@font/sofia_pro_black_az"/>
 
 </RelativeLayout>

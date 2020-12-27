@@ -53,7 +53,8 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
     Sessions sessions;
 
     BottomNavigationView bnv;
-
+    
+    //TODO: RIWAYAT BENERIN
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

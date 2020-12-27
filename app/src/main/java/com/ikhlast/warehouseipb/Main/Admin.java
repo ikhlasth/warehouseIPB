@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -50,8 +51,8 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private String user;
-
-    private Button confirm, onProgress;
+    private EditText etKapasitas;
+    private Button confirm, onProgress, kirim;
 
     private AlertDialog.Builder alert;
     private Sessions sessions;
@@ -61,6 +62,7 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
     private viewAdapter vpAdapter;
     private int[] layouts;
     private LinearLayout lb;
+    private Intent i;
     private static final String CODE = "CODE";
 
     @Override
@@ -99,6 +101,7 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
         lm1 = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(lm1);
         getConf1();
+
         }
 
 
@@ -136,6 +139,39 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
                 lb.setVisibility(View.GONE);
                 bnv.getMenu().getItem(1).setChecked(true);
                 rv.setVisibility(View.GONE);
+
+                etKapasitas = findViewById(R.id.manage_kapasitas);
+                kirim = findViewById(R.id.manage_btKirim);
+                kirim.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!etKapasitas.getText().toString().equals("")) {
+                            final int capacity = Integer.parseInt(etKapasitas.getText().toString());
+
+                            alert = new AlertDialog.Builder(getWindow().getContext());
+                            alert
+                                    .setTitle("Ubah kapasitas?")
+                                    .setMessage("Kapasitas akan diubah menjadi " + capacity + " m2")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            db.child("Preferences/kapasitas").setValue(capacity).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(getWindow().getContext(), "Berhasil mengubah kapasitas", Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+                                        }
+                                    }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            }).create().show();
+                        }
+                    }
+                });
             }
         }
 
@@ -235,13 +271,13 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
                 "Harap tunggu...",
                 true,
                 false);
-        db.child("List/Pesanan Masuk/Hewan/id").addValueEventListener(new ValueEventListener() {
+        db.child("List/Sedang Berjalan/id").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 daftarBerjalan = new ArrayList<>();
-                for (DataSnapshot note : snapshot.getChildren()){
-                    namas barang = note.getValue(namas.class);
-                    barang.setUser(note.getKey());
+                for (DataSnapshot n1 : snapshot.getChildren()){
+                    namas barang = n1.getValue(namas.class);
+                    barang.setUser(n1.getKey());
                     daftarBerjalan.add(barang);
                 }
                 adapter = new AdapterAdmin1(daftarBerjalan, Admin.this);
@@ -279,10 +315,15 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
     public void onDataClick(namas barang, int position) {
         if (db != null){
 //            Toast.makeText(Admin.this, "Anda mengklik "+barang, Toast.LENGTH_LONG).show();
-            Intent i = new Intent(Admin.this, Details.class);
-            i.putExtra(CODE, barang.getUser());
+            if (viewPager.getCurrentItem() == 0) {
+                i = new Intent(Admin.this, Details.class);
+                i.putExtra(CODE, barang.getUser());
+            } else if (viewPager.getCurrentItem() == 1){
+                i = new Intent(Admin.this, DetailsBerjalan.class);
+                i.putExtra(CODE, barang.getUser());
+            }
             startActivity(i);
-            overridePendingTransition(0,0);
+            overridePendingTransition(0, 0);
         }
     }
 

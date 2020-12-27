@@ -1,11 +1,5 @@
 package com.ikhlast.warehouseipb.Main;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -14,10 +8,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -26,14 +23,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ikhlast.warehouseipb.Adapter.AdapterDetailBarang;
+import com.ikhlast.warehouseipb.Adapter.AdapterDetailBarangBerjalan;
 import com.ikhlast.warehouseipb.Adapter.AdapterDetailHewan;
+import com.ikhlast.warehouseipb.Adapter.AdapterDetailHewanBerjalan;
 import com.ikhlast.warehouseipb.Models.Barang;
 import com.ikhlast.warehouseipb.Models.Hewan;
 import com.ikhlast.warehouseipb.R;
 
 import java.util.ArrayList;
 
-public class Details extends AppCompatActivity implements AdapterDetailBarang.DataListener, AdapterDetailHewan.DataListener, View.OnClickListener {
+public class DetailsBerjalan extends AppCompatActivity implements AdapterDetailBarangBerjalan.DataListener, AdapterDetailHewanBerjalan.DataListener, View.OnClickListener {
     private TextView tvUser, tvID;
     private Button btback, btKonf, btwa;
     private String data, username, hp;
@@ -50,7 +49,7 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.details);
+        setContentView(R.layout.detailsberjalan);
 
         Bundle b = getIntent().getExtras();
         database = FirebaseDatabase.getInstance().getReference();
@@ -74,7 +73,7 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
         lmrvBarang = new LinearLayoutManager(this);
         rvHewan.setLayoutManager(lmrvHewan);
         rvBarang.setLayoutManager(lmrvBarang);
-        loading = ProgressDialog.show(Details.this,
+        loading = ProgressDialog.show(DetailsBerjalan.this,
                 null,
                 "Harap tunggu...",
                 true,
@@ -117,19 +116,15 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
     }
 
     private void getAllHewan(){
-        database.child("List/Pesanan Masuk").addValueEventListener(new ValueEventListener() {
+        database.child("List/Sedang Berjalan").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 daftarHewan = new ArrayList<>();
-                for (DataSnapshot n : snapshot.child("Hewan/id/"+data).getChildren()) {
+                for (DataSnapshot n : snapshot.child("id/"+data+"/Hewan").getChildren()) {
                     Hewan h = n.getValue(Hewan.class);
                     daftarHewan.add(h);
                 }
-                for (DataSnapshot n1 : snapshot.child("Keduanya/id/"+data+"/Hewan").getChildren()){
-                    Hewan h1 = n1.getValue(Hewan.class);
-                    daftarHewan.add(h1);
-                }
-                adapter = new AdapterDetailHewan(daftarHewan, Details.this);
+                adapter = new AdapterDetailHewanBerjalan(daftarHewan, DetailsBerjalan.this);
                 rvHewan.setAdapter(adapter);
                 loading.dismiss();
             }
@@ -142,19 +137,15 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
     }
 
     private void getAllBarang(){
-        database.child("List/Pesanan Masuk").addValueEventListener(new ValueEventListener() {
+        database.child("List/Sedang Berjalan").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 daftarBarang = new ArrayList<>();
-                for (DataSnapshot n : snapshot.child("Barang/id/"+data).getChildren()) {
+                for (DataSnapshot n : snapshot.child("id/"+data+"/Barang").getChildren()) {
                     Barang b = n.getValue(Barang.class);
                     daftarBarang.add(b);
                 }
-                for (DataSnapshot n1 : snapshot.child("Keduanya/id/"+data+"/Barang").getChildren()){
-                    Barang b1 = n1.getValue(Barang.class);
-                    daftarBarang.add(b1);
-                }
-                adapter = new AdapterDetailBarang(daftarBarang, Details.this);
+                adapter = new AdapterDetailBarangBerjalan(daftarBarang, DetailsBerjalan.this);
                 rvBarang.setAdapter(adapter);
                 loading.dismiss();
             }
@@ -175,8 +166,8 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
             case R.id.details_btKonfirmasi:
                 alert = new AlertDialog.Builder(getWindow().getContext());
                 alert
-                        .setTitle("Konfirmasi")
-                        .setMessage("Konfirmasi pesanan?")
+                        .setTitle("Selesaikan")
+                        .setMessage("Selesaikan pesanan?")
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -218,32 +209,14 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
         }
     }
     private void konfirm(){
-        database.child("List/Sedang Berjalan/id/"+data+"/Barang").setValue(daftarBarang);
-        database.child("List/Sedang Berjalan/id/"+data+"/Hewan").setValue(daftarHewan).addOnSuccessListener(new OnSuccessListener<Void>() {
+        database.child("user/"+data+"/riwayat/barang").setValue(daftarBarang);
+        database.child("user/"+data+"/riwayat/hewan").setValue(daftarHewan).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(), "Berhasil dikonfirmasi", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Berhasil diselesaikan", Toast.LENGTH_LONG).show();
             }
         });
-        database.child("List/Pesanan Masuk").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child("Barang/id/"+data).exists()){
-                    database.child("List/Pesanan Masuk/Barang/id/"+data).removeValue();
-                }
-                if (snapshot.child("Hewan/id/"+data).exists()){
-                    database.child("List/Pesanan Masuk/Hewan/id/"+data).removeValue();
-                }
-                if (snapshot.child("Keduanya/id/"+data).exists()){
-                    database.child("List/Pesanan Masuk/Keduanya/id/"+data).removeValue();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        database.child("List/Sedang Berjalan/id/"+data).removeValue();
         onBackPressed();
     }
 
@@ -256,12 +229,12 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
 
     public void onHewanClick(Hewan hewan, final int position){
         if (database != null){
-            Toast.makeText(Details.this, "eh kepencet "+hewan, Toast.LENGTH_LONG).show();
+            Toast.makeText(DetailsBerjalan.this, "eh kepencet "+hewan, Toast.LENGTH_LONG).show();
         }
     }
     public void onBarangClick(Barang barang, final int position){
         if (database != null){
-            Toast.makeText(Details.this, "eh kepencet "+barang, Toast.LENGTH_LONG).show();
+            Toast.makeText(DetailsBerjalan.this, "eh kepencet "+barang, Toast.LENGTH_LONG).show();
         }
     }
 }
