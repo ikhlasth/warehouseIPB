@@ -31,12 +31,14 @@ import com.ikhlast.warehouseipb.Models.Barang;
 import com.ikhlast.warehouseipb.Models.Hewan;
 import com.ikhlast.warehouseipb.R;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Details extends AppCompatActivity implements AdapterDetailBarang.DataListener, AdapterDetailHewan.DataListener, View.OnClickListener {
     private TextView tvUser, tvID;
     private Button btback, btKonf, btwa;
-    private String data, username, hp;
+    private String data, username, hp, tanggal, akhir, akhirtgl;
     private ArrayList<Barang> daftarBarang;
     private ArrayList<Hewan> daftarHewan;
     private RecyclerView rvHewan, rvBarang;
@@ -46,6 +48,7 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
     private DatabaseReference database;
     private ProgressDialog loading;
     private AlertDialog.Builder alert;
+    DateFormat time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,8 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
         setContentView(R.layout.details);
 
         Bundle b = getIntent().getExtras();
+        tanggal = time.getDateTimeInstance().format(new Date());
+        tanggalan(tanggal);
         database = FirebaseDatabase.getInstance().getReference();
         tvUser = findViewById(R.id.details_tvUser);
         tvID = findViewById(R.id.details_tvidUser);
@@ -83,6 +88,35 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
         getAllBarang();
         getHp();
 
+
+    }
+    private void tanggalan(String tanggaal){
+        akhir = tanggaal.substring(0,3);
+        if (akhir.equals("Jan")){
+            akhirtgl = tanggal.replace("Jan", "Feb");
+        } else if (akhir.equals("Feb")){
+            akhirtgl = tanggal.replace("Feb", "Mar");
+        } else if (akhir.equals("Mar")){
+            akhirtgl = tanggal.replace("Mar", "Apr");
+        } else if (akhir.equals("Apr")){
+            akhirtgl = tanggal.replace("Apr", "May");
+        } else if (akhir.equals("May")){
+            akhirtgl = tanggal.replace("May", "Jun");
+        } else if (akhir.equals("Jun")){
+            akhirtgl = tanggal.replace("Jun", "Jul");
+        } else if (akhir.equals("Jul")){
+            akhirtgl = tanggal.replace("Jul", "Aug");
+        } else if (akhir.equals("Aug")){
+            akhirtgl = tanggal.replace("Aug", "Sep");
+        } else if (akhir.equals("Sep")){
+            akhirtgl = tanggal.replace("Sep", "Okt");
+        } else if (akhir.equals("Okt")){
+            akhirtgl = tanggal.replace("Okt", "Nov");
+        } else if (akhir.equals("Nov")){
+            akhirtgl = tanggal.replace("Nov", "Dec");
+        } else if (akhir.equals("Dec")){
+            akhirtgl = tanggal.replace("Dec", "Jan");
+        }
     }
 
     private void getHp() {
@@ -146,9 +180,10 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 daftarBarang = new ArrayList<>();
+                //error kalo kosong, bakal kebaca string bukan model. jadi harus sediain 1 jangan diapa2in
                 for (DataSnapshot n : snapshot.child("Barang/id/"+data).getChildren()) {
-                    Barang b = n.getValue(Barang.class);
-                    daftarBarang.add(b);
+                        Barang b = n.getValue(Barang.class);
+                        daftarBarang.add(b);
                 }
                 for (DataSnapshot n1 : snapshot.child("Keduanya/id/"+data+"/Barang").getChildren()){
                     Barang b1 = n1.getValue(Barang.class);
@@ -218,6 +253,7 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
         }
     }
     private void konfirm(){
+        database.child("user/"+data+"/status penitipan/berakhir").setValue(akhirtgl);
         database.child("List/Sedang Berjalan/id/"+data+"/Barang").setValue(daftarBarang);
         database.child("List/Sedang Berjalan/id/"+data+"/Hewan").setValue(daftarHewan).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

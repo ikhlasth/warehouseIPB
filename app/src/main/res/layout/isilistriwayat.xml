@@ -31,33 +31,8 @@
                 android:textColor="@color/baru_putih"
                 android:textSize="20sp"
                 android:fontFamily="@font/sofia_pro_black_az"/>
-            <TextView
-                android:id="@+id/riwayat_deskripsipaket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:hint="Kasur + 20 set pakaian + sepatu + jasa service/laundry"
-                android:textColor="@color/baru_putih"
-                android:fontFamily="@font/sofia_pro_medium_az"
-                android:textSize="17sp"/>
+
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight=".75">
-
-            <TextView
-                android:id="@+id/riwayat_dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rp 50000"
-                android:textColor="@color/baru_pink"
-                android:fontFamily="@font/sofia_pro_light_az"/>
-        </LinearLayout>
-
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

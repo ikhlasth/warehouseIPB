@@ -30,12 +30,15 @@ import com.ikhlast.warehouseipb.Models.Barang;
 import com.ikhlast.warehouseipb.Models.Hewan;
 import com.ikhlast.warehouseipb.R;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class DetailsBerjalan extends AppCompatActivity implements AdapterDetailBarangBerjalan.DataListener, AdapterDetailHewanBerjalan.DataListener, View.OnClickListener {
     private TextView tvUser, tvID;
     private Button btback, btKonf, btwa;
-    private String data, username, hp;
+    private String data, username, hp, tanggal;
     private ArrayList<Barang> daftarBarang;
     private ArrayList<Hewan> daftarHewan;
     private RecyclerView rvHewan, rvBarang;
@@ -46,12 +49,15 @@ public class DetailsBerjalan extends AppCompatActivity implements AdapterDetailB
     private ProgressDialog loading;
     private AlertDialog.Builder alert;
 
+    DateFormat time;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detailsberjalan);
 
         Bundle b = getIntent().getExtras();
+        tanggal = time.getDateTimeInstance().format(new Date());
         database = FirebaseDatabase.getInstance().getReference();
         tvUser = findViewById(R.id.details_tvUser);
         tvID = findViewById(R.id.details_tvidUser);
@@ -209,8 +215,8 @@ public class DetailsBerjalan extends AppCompatActivity implements AdapterDetailB
         }
     }
     private void konfirm(){
-        database.child("user/"+data+"/riwayat/barang").setValue(daftarBarang);
-        database.child("user/"+data+"/riwayat/hewan").setValue(daftarHewan).addOnSuccessListener(new OnSuccessListener<Void>() {
+        database.child("user/"+data+"/riwayat/"+tanggal+"/"+"barang").setValue(daftarBarang);
+        database.child("user/"+data+"/riwayat/"+tanggal+"/"+"hewan").setValue(daftarHewan).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(getApplicationContext(), "Berhasil diselesaikan", Toast.LENGTH_LONG).show();

@@ -28,7 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ikhlast.warehouseipb.Adapter.AdapterProfil;
-import com.ikhlast.warehouseipb.Models.ModelPaket;
+import com.ikhlast.warehouseipb.Models.riwayats;
 import com.ikhlast.warehouseipb.Preferences.Sessions;
 import com.ikhlast.warehouseipb.R;
 
@@ -39,7 +39,7 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
     private RecyclerView rv;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<ModelPaket> daftarProfil;
+    private ArrayList<riwayats> daftarProfil;
 
     private ProgressDialog loading;
     private FirebaseAuth mAuth;
@@ -53,8 +53,7 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
     Sessions sessions;
 
     BottomNavigationView bnv;
-    
-    //TODO: RIWAYAT BENERIN
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,15 +105,17 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
-                statusPenitipan = snapshot.child("nama").getValue(String.class);
+//                statusPenitipan = snapshot.child("nama").getValue(String.class);
                 berlakuSampai = snapshot.child("berakhir").getValue(String.class);
                 } else {
                     statusPenitipan = "Anda belum menitipkan apapun";
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    stat.setText(Html.fromHtml("<b>Anda memilih: </b>"+statusPenitipan+"<br></br><b>Berlaku sampai: </b>"+berlakuSampai, Html.FROM_HTML_MODE_COMPACT));
+//                    stat.setText(Html.fromHtml("<b>Anda memilih: </b>"+statusPenitipan+"<br></br><b>Berlaku sampai: </b>"+berlakuSampai, Html.FROM_HTML_MODE_COMPACT));
+                    stat.setText(Html.fromHtml("<b>Masa titip anda berlaku sampai: </b><br>"+berlakuSampai+"</br>", Html.FROM_HTML_MODE_COMPACT));
                 } else {
-                    stat.setText(Html.fromHtml("<b>Anda memilih: </b>"+statusPenitipan+"<br></br><b>Berlaku sampai: </b>"+berlakuSampai));
+//                    stat.setText(Html.fromHtml("<b>Anda memilih: </b>"+statusPenitipan+"<br></br><b>Berlaku sampai: </b>"+berlakuSampai));
+                    stat.setText(Html.fromHtml("<b>Masa titip anda berlaku sampai: </b><br>"+berlakuSampai+"</br>"));
                 }
             }
 
@@ -131,9 +132,11 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 daftarProfil = new ArrayList<>();
                 for (DataSnapshot note : snapshot.getChildren()){
-                    ModelPaket barang = note.getValue(ModelPaket.class);
-                    barang.setJudul(note.getKey());
-                    daftarProfil.add(barang);
+//                    ModelPaket barang = note.getValue(ModelPaket.class);
+//                    barang.setJudul(note.getKey());
+                    riwayats tgl = note.getValue(riwayats.class);
+                    tgl.setTanggal(note.getKey());
+                    daftarProfil.add(tgl);
                 }
                 adapter = new AdapterProfil(daftarProfil, Profil.this);
                 rv.setAdapter(adapter);
@@ -151,7 +154,7 @@ public class Profil extends AppCompatActivity implements AdapterProfil.DataListe
 
 
     @Override
-    public void onRiwayatClick(ModelPaket barang, final int position){
+    public void onRiwayatClick(riwayats barang, final int position){
         if (db != null){
             Toast.makeText(Profil.this, "Anda mengklik riwayat "+barang, Toast.LENGTH_LONG).show();
         }
