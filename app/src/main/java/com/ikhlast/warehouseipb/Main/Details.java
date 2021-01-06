@@ -27,23 +27,26 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ikhlast.warehouseipb.Adapter.AdapterDetailBarang;
 import com.ikhlast.warehouseipb.Adapter.AdapterDetailHewan;
+import com.ikhlast.warehouseipb.Adapter.AdapterDetailPaket;
 import com.ikhlast.warehouseipb.Models.Barang;
 import com.ikhlast.warehouseipb.Models.Hewan;
+import com.ikhlast.warehouseipb.Models.ModelPaket;
 import com.ikhlast.warehouseipb.R;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Details extends AppCompatActivity implements AdapterDetailBarang.DataListener, AdapterDetailHewan.DataListener, View.OnClickListener {
+public class Details extends AppCompatActivity implements AdapterDetailBarang.DataListener, AdapterDetailHewan.DataListener, View.OnClickListener, AdapterDetailPaket.DataListener {
     private TextView tvUser, tvID;
     private Button btback, btKonf, btwa;
     private String data, username, hp, tanggal, akhir, akhirtgl;
     private ArrayList<Barang> daftarBarang;
     private ArrayList<Hewan> daftarHewan;
-    private RecyclerView rvHewan, rvBarang;
+    private ArrayList<ModelPaket> daftarPaket;
+    private RecyclerView rvHewan, rvBarang, rvPaket;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager lmrvHewan, lmrvBarang;
+    private RecyclerView.LayoutManager lmrvHewan, lmrvBarang, lmrvPaket;
 
     private DatabaseReference database;
     private ProgressDialog loading;
@@ -73,12 +76,16 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
 
         rvHewan = findViewById(R.id.details_rvHewan);
         rvBarang = findViewById(R.id.details_rvBarang);
+        rvPaket = findViewById(R.id.details_rvPaket);
         rvHewan.setHasFixedSize(true);
         rvBarang.setHasFixedSize(true);
+        rvPaket.setHasFixedSize(true);
         lmrvHewan = new LinearLayoutManager(this);
         lmrvBarang = new LinearLayoutManager(this);
+        lmrvPaket = new LinearLayoutManager(this);
         rvHewan.setLayoutManager(lmrvHewan);
         rvBarang.setLayoutManager(lmrvBarang);
+        rvPaket.setLayoutManager(lmrvPaket);
         loading = ProgressDialog.show(Details.this,
                 null,
                 "Harap tunggu...",
@@ -86,6 +93,7 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
                 false);
         getAllHewan();
         getAllBarang();
+        getAllPaket();
         getHp();
 
 
@@ -200,6 +208,29 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
             }
         });
     }
+    private void getAllPaket(){
+        database.child("List/Pesanan Masuk").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                daftarPaket = new ArrayList<>();
+                for (DataSnapshot n : snapshot.child("Paket/id/"+data).getChildren()){
+                    for (DataSnapshot jj : n.getChildren()) {
+                        ModelPaket b = jj.getValue(ModelPaket.class);
+                        daftarPaket.add(b);
+                    }
+                }
+                adapter = new AdapterDetailPaket(daftarPaket, Details.this);
+                rvPaket.setAdapter(adapter);
+                loading.dismiss();
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
     @Override
     public void onClick(View view) {
@@ -253,7 +284,9 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
         }
     }
     private void konfirm(){
+        //ada yang auto keapus kalo pesenan yang baru muncul
         database.child("user/"+data+"/status penitipan/berakhir").setValue(akhirtgl);
+        database.child("List/Sedang Berjalan/id/"+data+"/Paket").setValue(daftarPaket);
         database.child("List/Sedang Berjalan/id/"+data+"/Barang").setValue(daftarBarang);
         database.child("List/Sedang Berjalan/id/"+data+"/Hewan").setValue(daftarHewan).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -272,6 +305,9 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
                 }
                 if (snapshot.child("Keduanya/id/"+data).exists()){
                     database.child("List/Pesanan Masuk/Keduanya/id/"+data).removeValue();
+                }
+                if (snapshot.child("Paket/id/"+data).exists()){
+                    database.child("List/Pesanan Masuk/Paket/id/"+data).removeValue();
                 }
             }
 
@@ -296,6 +332,13 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
         }
     }
     public void onBarangClick(Barang barang, final int position){
+        if (database != null){
+            Toast.makeText(Details.this, "eh kepencet "+barang, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onPaketClick(ModelPaket barang, int position) {
         if (database != null){
             Toast.makeText(Details.this, "eh kepencet "+barang, Toast.LENGTH_LONG).show();
         }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/isilist_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:backgroundTint="@null"
+    app:cardCornerRadius="10dp"
+    android:elevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:weightSum="1"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/isilistdetail_namapaket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="ini isinya nama"
+                android:textColor="@color/pastel_ijotua"
+                android:fontFamily="@font/sofia_pro_black_az"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/isilistdetail_deskripsipaket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="ini isinya deskripsi"
+                android:textColor="@color/pastel_ijotua"
+                android:fontFamily="@font/sofia_pro_medium_az"
+                android:textSize="17sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

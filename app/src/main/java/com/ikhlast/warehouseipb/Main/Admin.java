@@ -211,6 +211,13 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
                         daftarKonfirmasi.add(nk);
                     }
                 }
+                for (DataSnapshot j : snapshot.child("Paket/id").getChildren()){
+                    namas n = j.getValue(namas.class);
+                    n.setUser(j.getKey());
+                    if (!(daftarKonfirmasi.contains(n))) {
+                        daftarKonfirmasi.add(n);
+                    }
+                }
                 adapter = new AdapterAdmin1(daftarKonfirmasi, Admin.this);
                 rv.setAdapter(adapter);
                 loading.dismiss();
@@ -253,6 +260,13 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
                             daftarKonfirmasi.add(nk);
                         }
                     }
+                for (DataSnapshot j : snapshot.child("Paket/id").getChildren()){
+                    namas n = j.getValue(namas.class);
+                    n.setUser(j.getKey());
+                    if (!(daftarKonfirmasi.contains(n))) {
+                        daftarKonfirmasi.add(n);
+                    }
+                }
                 adapter = new AdapterAdmin1(daftarKonfirmasi, Admin.this);
                 rv1.setAdapter(adapter);
                 loading.dismiss();

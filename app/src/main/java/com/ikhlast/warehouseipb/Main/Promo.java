@@ -123,7 +123,11 @@ public class Promo extends AppCompatActivity implements AdapterPromo.DataListene
     @Override
     public void onPromoClick(ModelPaket barang, final int position){
         if (db != null){
-            Toast.makeText(Promo.this, "Anda mengklik paket "+barang, Toast.LENGTH_LONG).show();
+//            Toast.makeText(Promo.this, "Anda mengklik paket "+barang, Toast.LENGTH_LONG).show();
+            Intent i = new Intent(Promo.this, DetailPromo.class);
+            i.putExtra("512", barang.getJudul());
+            startActivity(i);
+            overridePendingTransition(0,0);
         }
     }
 
