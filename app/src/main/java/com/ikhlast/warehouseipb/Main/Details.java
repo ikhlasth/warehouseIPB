@@ -99,31 +99,30 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
 
     }
     private void tanggalan(String tanggaal){
-        akhir = tanggaal.substring(0,3);
-        if (akhir.equals("Jan")){
-            akhirtgl = tanggal.replace("Jan", "Feb");
-        } else if (akhir.equals("Feb")){
-            akhirtgl = tanggal.replace("Feb", "Mar");
-        } else if (akhir.equals("Mar")){
-            akhirtgl = tanggal.replace("Mar", "Apr");
-        } else if (akhir.equals("Apr")){
-            akhirtgl = tanggal.replace("Apr", "May");
-        } else if (akhir.equals("May")){
-            akhirtgl = tanggal.replace("May", "Jun");
-        } else if (akhir.equals("Jun")){
-            akhirtgl = tanggal.replace("Jun", "Jul");
-        } else if (akhir.equals("Jul")){
-            akhirtgl = tanggal.replace("Jul", "Aug");
-        } else if (akhir.equals("Aug")){
-            akhirtgl = tanggal.replace("Aug", "Sep");
-        } else if (akhir.equals("Sep")){
-            akhirtgl = tanggal.replace("Sep", "Okt");
-        } else if (akhir.equals("Okt")){
-            akhirtgl = tanggal.replace("Okt", "Nov");
-        } else if (akhir.equals("Nov")){
-            akhirtgl = tanggal.replace("Nov", "Dec");
-        } else if (akhir.equals("Dec")){
-            akhirtgl = tanggal.replace("Dec", "Jan");
+        if (tanggaal.contains("Jan")){
+            akhirtgl = tanggal.replace("Jan", "Feb").replace(".", ":");
+        } else if (tanggaal.contains("Feb")){
+            akhirtgl = tanggal.replace("Feb", "Mar").replace(".", ":");
+        } else if (tanggaal.contains("Mar")){
+            akhirtgl = tanggal.replace("Mar", "Apr").replace(".", ":");
+        } else if (tanggaal.contains("Apr")){
+            akhirtgl = tanggal.replace("Apr", "May").replace(".", ":");
+        } else if (tanggaal.contains("May")){
+            akhirtgl = tanggal.replace("May", "Jun").replace(".", ":");
+        } else if (tanggaal.contains("Jun")){
+            akhirtgl = tanggal.replace("Jun", "Jul").replace(".", ":");
+        } else if (tanggaal.contains("Jul")){
+            akhirtgl = tanggal.replace("Jul", "Aug").replace(".", ":");
+        } else if (tanggaal.contains("Aug")){
+            akhirtgl = tanggal.replace("Aug", "Sep").replace(".", ":");
+        } else if (tanggaal.contains("Sep")){
+            akhirtgl = tanggal.replace("Sep", "Okt").replace(".", ":");
+        } else if (tanggaal.contains("Okt")){
+            akhirtgl = tanggal.replace("Okt", "Nov").replace(".", ":");
+        } else if (tanggaal.contains("Nov")){
+            akhirtgl = tanggal.replace("Nov", "Dec").replace(".", ":");
+        } else if (tanggaal.contains("Dec")){
+            akhirtgl = tanggal.replace("Dec", "Jan").replace(".", ":");
         }
     }
 
@@ -285,10 +284,10 @@ public class Details extends AppCompatActivity implements AdapterDetailBarang.Da
     }
     private void konfirm(){
         //ada yang auto keapus kalo pesenan yang baru muncul
-        database.child("user/"+data+"/status penitipan/berakhir").setValue(akhirtgl);
         database.child("List/Sedang Berjalan/id/"+data+"/Paket").setValue(daftarPaket);
         database.child("List/Sedang Berjalan/id/"+data+"/Barang").setValue(daftarBarang);
-        database.child("List/Sedang Berjalan/id/"+data+"/Hewan").setValue(daftarHewan).addOnSuccessListener(new OnSuccessListener<Void>() {
+        database.child("List/Sedang Berjalan/id/"+data+"/Hewan").setValue(daftarHewan);
+        database.child("user/"+data+"/status penitipan/berakhir").setValue(akhirtgl).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(getApplicationContext(), "Berhasil dikonfirmasi", Toast.LENGTH_LONG).show();

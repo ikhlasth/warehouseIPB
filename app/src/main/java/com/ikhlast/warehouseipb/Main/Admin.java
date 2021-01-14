@@ -96,6 +96,7 @@ public class Admin extends AppCompatActivity implements AdapterAdmin1.DataListen
         vpAdapter = new viewAdapter();
         viewPager.setAdapter(vpAdapter);
         viewPager.addOnPageChangeListener(pagelistener);
+//        viewPager.setCurrentItem(0);
         rv = findViewById(R.id.admin_recycler_konfirmasi_sementara);
         rv.setHasFixedSize(true);
         lm1 = new LinearLayoutManager(getApplicationContext());

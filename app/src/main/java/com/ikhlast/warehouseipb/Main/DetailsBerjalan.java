@@ -62,6 +62,7 @@ public class DetailsBerjalan extends AppCompatActivity implements AdapterDetailB
 
         Bundle b = getIntent().getExtras();
         tanggal = time.getDateTimeInstance().format(new Date());
+        tanggal = tanggal.replace(".", ":");
         database = FirebaseDatabase.getInstance().getReference();
         tvUser = findViewById(R.id.details_tvUser);
         tvID = findViewById(R.id.details_tvidUser);
@@ -256,7 +257,11 @@ public class DetailsBerjalan extends AppCompatActivity implements AdapterDetailB
             }
         });
         database.child("List/Sedang Berjalan/id/"+data).removeValue();
-        onBackPressed();
+//        onBackPressed();
+        startActivity(new Intent(DetailsBerjalan.this, Admin.class));
+        overridePendingTransition(0,0);
+        finish();
+
     }
 
     @Override

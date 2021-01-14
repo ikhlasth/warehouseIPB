@@ -6,8 +6,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <!-- data tetep kesimpen kalo diuninstall pake allowbackup=true-->
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/logo2"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo2"

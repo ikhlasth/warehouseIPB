@@ -41,7 +41,7 @@ import java.util.Date;
 public class DetailPromo extends AppCompatActivity implements View.OnClickListener,  AdapterDetailPromo.DataListener {
     private TextView tvNama, tvTanggal;
     private Button btback, btPesan, btWa;
-    private String data, userID, hp;
+    private String data, userID;
     private ArrayList<ModelPaket> daftarPaket;
     private RecyclerView rvPaket;
     private RecyclerView.Adapter adapter;
@@ -134,8 +134,6 @@ public class DetailPromo extends AppCompatActivity implements View.OnClickListen
                 }).create().show();
                 break;
             case R.id.detailpromo_btwa:
-                if (hp != null) {
-
                     alert = new AlertDialog.Builder(this);
                     alert
                             .setTitle("Kontak Whatsapp Admin")
@@ -144,7 +142,7 @@ public class DetailPromo extends AppCompatActivity implements View.OnClickListen
                             .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    String url = "https://api.whatsapp.com/send?phone=+6287775234085";
+                                    String url = "https://api.whatsapp.com/send?phone=+6287775234085&text=Halo%20Admin%20WHIPB,%20saya%20ingin%20bertanya";
                                     Intent i = new Intent(Intent.ACTION_VIEW);
                                     i.setData(Uri.parse(url));
                                     startActivity(i);
@@ -155,7 +153,6 @@ public class DetailPromo extends AppCompatActivity implements View.OnClickListen
                             dialog.cancel();
                         }
                     }).create().show();
-                }
                 break;
 
         }
