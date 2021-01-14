@@ -73,7 +73,10 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener {
             password2.setError("Konfirmasi password harus sama");
             password2.requestFocus();
         } else if (usernameText.equals("")) {
-            username.setError("Username tidak boleh kosong");
+            username.setError("Nama pengguna tidak boleh kosong");
+            username.requestFocus();
+        } else if (usernameText.contains(" ")) {
+            username.setError("Tidak boleh mengandung spasi");
             username.requestFocus();
         } else if (userpassword.equals("") || userpassword.length() < 6) {
             password.setError("Password minimal 6 huruf atau angka");
@@ -106,8 +109,8 @@ public class Daftar extends AppCompatActivity implements View.OnClickListener {
                                 }
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(Daftar.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Daftar.this, "Pendaftaran gagal. Mohon gunakan nama pengguna yang lain",
+                                        Toast.LENGTH_LONG).show();
                             }
                             // ...
                         }

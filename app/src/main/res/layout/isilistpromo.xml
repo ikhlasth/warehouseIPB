@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
+        android:paddingVertical="8dp"
         android:weightSum="1"
         android:orientation="horizontal">
         <LinearLayout
@@ -25,7 +26,7 @@
                 android:id="@+id/isilist_namapaket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Paket 1"
+                android:text="Paket 1"
                 android:textColor="@color/baru_putih"
                 android:textSize="20sp"
                 android:fontFamily="@font/sofia_pro_black_az"/>
@@ -34,7 +35,7 @@
                 android:id="@+id/isilist_deskripsipaket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="2 Kendaraan, 1 kasur, 1 pasang sepatu, 20 set pakaian, jasa service / laundry"
+                android:text="Peliharaan, 1 kendaraan, 1 kasur, 1 pasang sepatu, 10 set pakaian, jasa service/laundry"
                 android:textColor="@color/baru_putih"
                 android:fontFamily="@font/sofia_pro_medium_az"
                 android:textSize="17sp"/>
@@ -43,7 +44,7 @@
                 android:id="@+id/isilist_dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Dp : Rp. 50 000"
+                android:text="Dp : Rp. 50 000"
                 android:textColor="@color/baru_putih"
                 android:textSize="17sp"
                 android:fontFamily="@font/sofia_pro_light_az"/>
@@ -54,6 +55,6 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_weight="1"
-            android:src="@drawable/news" />
+            android:src="@drawable/paketlengkap" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

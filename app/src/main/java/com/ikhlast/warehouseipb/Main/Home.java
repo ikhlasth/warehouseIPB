@@ -3,6 +3,8 @@ package com.ikhlast.warehouseipb.Main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,9 +36,13 @@ public class Home extends AppCompatActivity implements BottomNavigationView.OnNa
     Sessions sessions;
     String nick;
     private Button titip;
+    private TextView tvBelum;
     private ProgressDialog loading;
 
     BottomNavigationView bnv;
+    private RecyclerView rv;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
 
     @Override
@@ -49,6 +56,10 @@ public class Home extends AppCompatActivity implements BottomNavigationView.OnNa
         sessions = new Sessions(getApplicationContext());
         user = mAuth.getCurrentUser();
         nick = user.getEmail().replace("@whipb.com","");
+
+        tvBelum = findViewById(R.id.beranda_teksbelumnitip);
+        //todo benerin kalo beneran
+//        dbCheck();
 
         bnv = findViewById(R.id.nav_home);
         bnv.getMenu().getItem(1).setChecked(true);
@@ -80,6 +91,29 @@ public class Home extends AppCompatActivity implements BottomNavigationView.OnNa
                     startActivity(new Intent(Home.this, Biodata.class));
                     overridePendingTransition(0,0);
                     loading.dismiss();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void dbCheck(){
+        database.child("List/Sedang Berjalan/id/"+user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    tvBelum.setVisibility(View.GONE);
+                    rv = findViewById(R.id.beranda_recycler_list);
+                    rv.setVisibility(View.VISIBLE);
+                    rv.setHasFixedSize(true);
+                    layoutManager = new LinearLayoutManager(getWindow().getContext());
+                    rv.setLayoutManager(layoutManager);
+                } else {
+                    tvBelum.setVisibility(View.VISIBLE);
+                    rv.setVisibility(View.GONE);
                 }
             }
 

@@ -206,6 +206,16 @@ public class Biodata extends AppCompatActivity implements View.OnClickListener {
                         database.child("user").child(user.getUid()).child("Foto KTP").setValue(link);
                     }
                 });
+                alert = new AlertDialog.Builder(getWindow().getContext());
+                alert.setTitle("Konfirmasi diperlukan")
+                        .setMessage("Konfirmasi KTP akan dilakukan oleh admin sekaligus setelah anda melakukan penitipan")
+                        .setCancelable(false)
+                        .setPositiveButton("Oke", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        }).create().show();
                 Toast.makeText(Biodata.this, "Berhasil mengirim biodata", Toast.LENGTH_LONG).show();
             }
         })

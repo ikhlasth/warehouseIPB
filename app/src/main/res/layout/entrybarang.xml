@@ -7,7 +7,7 @@
             android:id="@+id/titipBarang_entry_jenis"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:hint="Jenis barang"
+            android:hint="Nama barang"
             android:textColor="@color/tekslogindaftar"
             android:inputType="textEmailAddress"
             android:ems="7"/>
