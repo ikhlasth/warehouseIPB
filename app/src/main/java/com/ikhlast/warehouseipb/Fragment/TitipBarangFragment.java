@@ -45,11 +45,11 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
     String nick, nohp;
     long count;
     private Button titip, tambahBarang, titipBarang, hapusBarang;
-    EditText etJenisBarang, etJumlahBarang;
+    EditText etJenisBarang, etJumlahBarang, et1, et2;
     LinearLayout containerTitip;
     private ProgressDialog loading;
 
-    ArrayList<String> isibarang;
+    ArrayList<String> isibarang, secret;
 
     public TitipBarangFragment() {
         // Required empty public constructor
@@ -134,11 +134,12 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
     }
     private void listAll(){
         isibarang = new ArrayList<>();
+        secret = new ArrayList<>();
         final int childCount = containerTitip.getChildCount();
         for(int i=0; i<childCount; i++){
             View thisChild = containerTitip.getChildAt(i);
-            EditText et1 = thisChild.findViewById(R.id.titipBarang_entry_jenis);
-            EditText et2 = thisChild.findViewById(R.id.titipBarang_entry_jumlah);
+            et1 = thisChild.findViewById(R.id.titipBarang_entry_jenis);
+            et2 = thisChild.findViewById(R.id.titipBarang_entry_jumlah);
             String tv1 = et1.getText().toString().trim();
             String tv2 = et2.getText().toString().trim();
             if (tv1.equals("")){
@@ -147,10 +148,13 @@ public class TitipBarangFragment extends Fragment implements View.OnClickListene
             } else if (tv2.equals("")){
                 et2.setError("Tidak boleh kosong");
                 break;
+            } else {
+                secret.add("true");
             }
             isibarang.add(tv1+" "+tv2);
         }
-        if (isibarang.size() > 0) {
+
+        if (isibarang.size() > 0 && secret.size() == childCount) {
 
             alert = new AlertDialog.Builder(getContext());
             alert

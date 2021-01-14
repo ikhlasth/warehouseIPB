@@ -44,11 +44,12 @@ public class TitipKeduanyaFragment extends Fragment implements View.OnClickListe
     AlertDialog.Builder alert;
     Sessions sessions;
     String nick, nohp;
+    int count;
     long cb, ch, sb, sh;
     private Button titip, tambah, hapus;
     EditText etJenisHewan, etPenyakit, etJenisMakanan, etVaksin, etNote, etJenisBarang, etJumlahBarang;
     LinearLayout container;
-    ArrayList<String> isi;
+    ArrayList<String> isi, secret;
     private ProgressDialog loading;
 
     public TitipKeduanyaFragment() {
@@ -130,6 +131,7 @@ public class TitipKeduanyaFragment extends Fragment implements View.OnClickListe
 
     private void list(){
         isi = new ArrayList<>();
+        secret = new ArrayList<>();
         final String s1 = etJenisHewan.getText().toString().trim();
         final String s2 = etPenyakit.getText().toString().trim();
         final String s3 = etJenisMakanan.getText().toString().trim();
@@ -155,7 +157,7 @@ public class TitipKeduanyaFragment extends Fragment implements View.OnClickListe
         } else if (s4.equals("")){
             etVaksin.setError("Isikan dengan - jika tidak ada");
         } else {
-            int count = container.getChildCount();
+            count = container.getChildCount();
             if (count == 0) {
                 alert = new AlertDialog.Builder(getContext());
                 alert
@@ -182,13 +184,15 @@ public class TitipKeduanyaFragment extends Fragment implements View.OnClickListe
                     } else if (t2.equals("")) {
                         et2.setError("Tidak boleh kosong");
                         break;
+                    } else {
+                        secret.add("true");
                     }
                     isi.add(t1 + " " + t2);
                 }
             }
         }
 
-        if (isi.size()>0){
+        if (isi.size()>0 && secret.size() == count){
             alert = new AlertDialog.Builder(getContext());
             final String finalS = s5;
             alert
@@ -199,7 +203,7 @@ public class TitipKeduanyaFragment extends Fragment implements View.OnClickListe
                             +" Dan hewan "+s1+" dengan penyakit "
                             + s2 + ". Makanan yang biasa diberikan adalah "
                             + s3 + ", dan pernah diberi vaksin " + s4
-                            + ". Dengan catatan " + s5 + ".")
+                            + ". Dengan catatan " + s5 + ". "+"Serta barang "+(String.valueOf(isi).replace("[", "").replace("]", "")))
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
